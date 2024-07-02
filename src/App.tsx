@@ -4,6 +4,8 @@ import viteLogo from '/vite.svg'
 import Header from './components/layout/header/header';
 
 import styles from './App.module.scss';
+import Footer from './components/layout/footer/footer';
+import MainPage from './components/pages/main-page/mainPage';
 
 
 function App() {
@@ -11,7 +13,9 @@ function App() {
 
   return (
     <div className={styles.container}>
-    <Header></Header>
+      <Header></Header>
+      <MainPage></MainPage>
+      <Footer></Footer>
       {/* <div>
         <a href="https://vitejs.dev" target="_blank">
           <img src={viteLogo} className="logo" alt="Vite logo" />
