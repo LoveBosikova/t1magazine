@@ -14,6 +14,14 @@
     line-height: 3.4vw;
 }
 
+@mixin h2 {
+    color: $black;
+    // font-size: $font-size-36;
+    font-weight: 600;
+    // letter-spacing: -.023vw;
+    line-height: 3.4vw;
+}
+
 @mixin button {
     display: flex;
     align-content: center;
@@ -31,11 +39,12 @@
     border: none;
     box-shadow: none;
     
-    &:hover {
+    &:hover,
+    &:focus {
         background-color: $brown;
     }
     
-    &:active {
+    &:disabled {
         background-color: $pink;
     }
 }
