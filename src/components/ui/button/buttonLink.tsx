@@ -1,10 +1,10 @@
-import style from './ButtonBanner.module.scss';
+import style from './ButtonLink.module.scss';
 
 type Props = {
   children: string | JSX.Element | JSX.Element[]
 }
 
-function ButtonBanner ({ children } : Props){
+function ButtonLink ({ children } : Props){
   return (
     <button className={style.button}>
       {children}
@@ -12,4 +12,4 @@ function ButtonBanner ({ children } : Props){
   );
 }
 
-export default ButtonBanner;
+export default ButtonLink;

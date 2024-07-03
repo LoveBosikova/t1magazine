@@ -1,4 +1,4 @@
-import ButtonBanner from '../../ui/button/buttonBunner';
+import ButtonLink from '../../ui/button/buttonLink';
 import style from './About.module.scss';
 
 // Раздел о магазине одежды и обуви
@@ -13,9 +13,9 @@ function About() {
 
         <h1 className={style.title}>Any products from famous brands <br></br> with worldwide delivery</h1>
         <p className={style.text}>We sell smartphones, laptops, clothes, shoes <br></br> and many other products at low prices</p>
-        <ButtonBanner>
+        <ButtonLink>
           <span className={style.btnText}>Go to shopping</span>
-        </ButtonBanner>
+        </ButtonLink>
       </div>
     </section>
   );

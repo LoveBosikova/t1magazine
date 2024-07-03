@@ -19,3 +19,18 @@
     align-content: center;
     margin-top: 3.2vw;
 }
+
+.btnWrap {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2vw;
+    margin-bottom: 3.2vw;
+}
+
+.btnText {
+    padding:.7vw 2.2vw;
+    font-weight: 300;
+    letter-spacing: -.0025vw;
+}

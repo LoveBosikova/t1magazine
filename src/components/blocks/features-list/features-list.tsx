@@ -1,10 +1,11 @@
 
 import Search from '../../ui/search/search';
-
 import FeatureCard, { IFeature } from '../../ui/featureCard/featureCard';
+import ButtonLink from '../../ui/button/buttonLink';
+
+import features from '../../../mocks/features';
 
 import style from './FeaturesList.module.scss'
-import features from '../../../mocks/features';
 
 // список товаров
 
@@ -12,22 +13,15 @@ function FeaturesList () {
   return (
     <section className={style.features}>
       <div className={style.contentWrap}>
-        {/* // title */}
         <h2 className={style.title}>Catalog</h2>
-
-        {/* // search */}
         <Search></Search>
-
-        {/* // gallery  */}
-
         <div className={style.gallery}>
           {/*! потом взять значение  features из контекста, плюс проверить налиличе и длину больше 0 !*/}
           {features.map((feature : IFeature) => <FeatureCard {...feature} key={`${feature.id}${feature.title}`}></FeatureCard>)}
-
         </div>
-
-        {/* // btn */}
-
+        <div className={style.btnWrap}>
+          <ButtonLink><span className={style.btnText}>Show more</span></ButtonLink>
+        </div>
       </div>
     </section>
   )
