@@ -1,2 +1,28 @@
 @import '../../../styles/variables.scss';
 @import '../../../styles/mixins.scss';
+
+.search {
+    margin-top: 3.4vw;
+    width: 100%;
+}
+
+.label {
+    width: 100%;
+}
+
+.searchBar {
+    width: 100%;
+    border: none;
+    background-color: $grey-input;
+    border-radius: $border-radius-4;
+    padding-top: 1.33vw;
+    padding-bottom: 1.33vw;
+    padding-left: 1.5vw;
+
+    &::placeholder {
+        font-family: "Jost", sans-serif !important;
+        color: $grey-placeholder;
+        font-size: $font-size-16;
+        font-weight: 400;
+    }
+}

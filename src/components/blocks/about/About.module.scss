@@ -3,7 +3,12 @@
 
 .banner {
     background-color: $violet;
-    min-height: 50vh;
+    min-height: 48.5vh;
+
+    & button {
+        position: relative;
+        z-index: 2
+    }
 }
 
 .contentWrap {

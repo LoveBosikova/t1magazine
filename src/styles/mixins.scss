@@ -1,7 +1,6 @@
 @import './variables.scss';
 
 @mixin adoptiveContainer {
-    max-width: 1440px;
     margin-left: auto;
     margin-top: auto;
 }
@@ -15,11 +14,11 @@
 }
 
 @mixin h2 {
-    color: $black;
-    // font-size: $font-size-36;
-    font-weight: 600;
-    // letter-spacing: -.023vw;
-    line-height: 3.4vw;
+    font-family: "Jost", sans-serif;
+    color: $grey;
+    font-size: $font-size-36;
+    font-weight: 800;
+    letter-spacing: -.023vw;
 }
 
 @mixin button {

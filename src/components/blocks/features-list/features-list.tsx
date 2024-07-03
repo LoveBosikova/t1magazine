@@ -21,7 +21,7 @@ function FeaturesList () {
         {/* // gallery  */}
 
         <div className={style.gallery}>
-          {/* потом взять значение  features из контекста*/}
+          {/*! потом взять значение  features из контекста, плюс проверить налиличе и длину больше 0 !*/}
           {features.map((feature : IFeature) => <FeatureCard {...feature} key={`${feature.id}${feature.title}`}></FeatureCard>)}
 
         </div>

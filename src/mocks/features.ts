@@ -6,14 +6,14 @@ const features : IFeature[] = [
     id: 0,
     title: "Essence Mascara Lash Princess",
     owner: "Name",
-    image: '../assets/shoes.jpg',
+    image: '../../../assets/shoes.jpg',
     price: 110,
   },
   {
     id: 1,
     title: "Essence Mascara Lash Princess",
     owner: "Name",
-    image: '../assets/shoes.jpg',
+    image: '../../../assets/shoes.jpg',
     price: 110,
   },
   {
