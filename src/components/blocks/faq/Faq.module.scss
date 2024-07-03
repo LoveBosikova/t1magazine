@@ -3,16 +3,18 @@
 
 .faq {
     @include adoptiveContainer;
-    padding-top: 4.7vw;
+    padding-top: 4.35vw;
     width: 100%;
     background-color: $violet;
 }
 
 .contentWrap {
-    margin-right: 18%;
-    margin-left: 20%;
+    margin-right: 18.3%;
+    margin-left: 19.8%;
 }
 
 .title {
     color: $white;
+    font-size: $font-size-36;
+    margin-bottom: 1.2vw;
 }

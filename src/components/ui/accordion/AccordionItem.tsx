@@ -11,8 +11,8 @@ export interface IQuestion {
 function AccordionItem (props: IQuestion) {
     return (
         <div className={styles.itemWrap}>
-            <button>
-                <p>{props.question}</p>
+            <button className={styles.queationWrap}>
+                <p className={styles.questionText}>{props.question}</p>
                 <picture>
                     <img src={closeIcon} alt='' />
                 </picture>
