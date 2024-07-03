@@ -1,8 +1,7 @@
-import style from './FeatureCard.module.scss';
-import cartImg from  '../../../assets/cart.png';
-
 import shoesImg from '../../../assets/shoes.jpg';
 import ButtonCart from '../button/buttonCart';
+
+import style from './FeatureCard.module.scss';
 export interface IFeature {
     id: number | string | undefined,
     title: string | undefined,
@@ -12,7 +11,6 @@ export interface IFeature {
 }
 
 function FeatureCard ( props : IFeature) {
-    console.log(props);
     return (
         <div className={style.card}>
             <div className={style.contentWrap}>

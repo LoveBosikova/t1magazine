@@ -1,0 +1,18 @@
+@import '../../../styles/variables.scss';
+@import '../../../styles/mixins.scss';
+
+.faq {
+    @include adoptiveContainer;
+    padding-top: 4.7vw;
+    width: 100%;
+    background-color: $violet;
+}
+
+.contentWrap {
+    margin-right: 18%;
+    margin-left: 20%;
+}
+
+.title {
+    color: $white;
+}
