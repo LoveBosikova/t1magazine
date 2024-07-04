@@ -6,6 +6,7 @@ import Header from './components/layout/header/header';
 import styles from './App.module.scss';
 import Footer from './components/layout/footer/footer';
 import MainPage from './components/pages/main-page/mainPage';
+import ProductPage from './components/pages/product-page/productPage';
 
 
 function App() {
@@ -14,7 +15,8 @@ function App() {
   return (
     <div className={styles.container}>
       <Header></Header>
-      <MainPage></MainPage>
+      <ProductPage></ProductPage>
+      {/* <MainPage></MainPage> */}
       <Footer></Footer>
       {/* <div>
         <a href="https://vitejs.dev" target="_blank">

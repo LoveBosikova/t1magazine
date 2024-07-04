@@ -1,33 +1,35 @@
-import shoesImg from '../../../assets/shoes.jpg';
+import shoesImg from '../../../assets/whiteBoots.jpg';
 
 import style from './ProductPage.module.scss';
 
 function ProductPage () {
     return (
-        <div className={style.pageWrap}>
-            <section>
+        <div className={style.page}>
+            <section className={style.pageWrap}>
                 <div className={style.imagesWrap}>
-                    <picture>
+                    <picture className={style.bigImg}>
                         <img src={shoesImg} alt="" />
                     </picture>
                     <div className={style.galleryWrap}>
-                        <picture>
-                            <img src={shoesImg} alt="" />
+                        {/* TODO: MAP */}
+                        <picture className={style.littleImgWrap}>
+                            <div className={style.shooseImgBorder}></div>
+                            <img className={style.galleryPhoto} src={shoesImg} alt="" />
                         </picture>
-                        <picture>
-                            <img src={shoesImg} alt="" />
+                        <picture className={style.littleImgWrap}>
+                            <img className={style.galleryPhoto} src={shoesImg} alt="" />
                         </picture>
-                        <picture>
-                            <img src={shoesImg} alt="" />
+                        <picture className={style.littleImgWrap}>
+                            <img className={style.galleryPhoto} src={shoesImg} alt="" />
                         </picture>
-                        <picture>
-                            <img src={shoesImg} alt="" />
+                        <picture className={style.littleImgWrap}>
+                            <img className={style.galleryPhoto} src={shoesImg} alt="" />
                         </picture>
-                        <picture>
-                            <img src={shoesImg} alt="" />
+                        <picture className={style.littleImgWrap}>
+                            <img className={style.galleryPhoto}src={shoesImg} alt="" />
                         </picture>
-                        <picture>
-                            <img src={shoesImg} alt="" />
+                        <picture className={style.littleImgWrap}>
+                            <img className={style.galleryPhoto} src={shoesImg} alt="" />
                         </picture>
                     </div>
                 </div>
@@ -45,6 +47,14 @@ function ProductPage () {
                         <p className={style.descriptionText}>
                         The Essence Mascara Lash Princess is a popular mascara known for its volumizing and lengthening effects. Achieve dramatic lashes with this long-lasting and cruelty-free formula.
                         </p>
+
+                        <p className={style.add}>1 month warranty</p>
+                        <p className={style.add}>Ships in 1 month</p>
+
+                        <div>
+                            {/* to bye elem */}
+                        </div>
+                        
 
 
                 </div>
