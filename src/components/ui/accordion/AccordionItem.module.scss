@@ -9,13 +9,21 @@
     flex-wrap: nowrap;
     justify-content: space-between;
     width: 100%;
-    border-top: 1px solid $white;
     background-color: $violet;
     border-radius: 0;
-    padding-left: 0;
-    padding-right: 0;
     padding-top: 1.87vw;
-    letter-spacing: 0.012vw;
+    padding-right: 0;
+    padding-bottom: 1.3vw;
+    padding-left: 0;
+    letter-spacing: 0.013vw;
+    border: none; 
+    outline: none;
+    border-top: 1px solid $white;
+
+    &:focus {
+        border: none; 
+        outline: none;
+    }
 }
 
 .questionText {
@@ -26,7 +34,31 @@
 }
 
 .answer {
+    color: transparent;
+    letter-spacing: 0.033vw;
+    height: 0;
+    will-change: color, padding-bottom, padding-top, height;
+    transition: all 200ms ease-out;
+}
+
+.answerOpen {
+    height: auto;
+    padding-top: 0.6vw;
+    padding-bottom: 1.35vw;
     color: $white;
-    padding-top: 1.1vw;
-    letter-spacing: 0.012vw;
+    letter-spacing: 0.033vw;
+    will-change: color, padding-bottom, padding-top, height;
+    transition: all 300ms ease-in;
+}
+
+.closePlus {
+    will-change: transform;
+    transform: rotate(0deg);
+    transition: all 250ms ease-in-out;
+}
+
+.closeCross {
+    will-change: transform;
+    transform: rotate(45deg);
+    transition: all 250ms ease-in-out;
 }

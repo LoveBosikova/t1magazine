@@ -29,8 +29,12 @@ body {
   margin: 0;
   display: block;
   place-items: center;
+  max-width: 100vw;
+  width: 100vw;
+  overflow-x: hidden;
   min-width: 320px;
   min-height: 100vh;
+  max-height: fit-content;
   font-family: "Jost", sans-serif;
   font-optical-sizing: auto;
 
