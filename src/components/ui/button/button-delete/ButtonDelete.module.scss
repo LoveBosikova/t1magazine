@@ -1,0 +1,16 @@
+@import '../../../../styles/variables.scss';
+
+.btnDelete {
+    border: none;
+    background-color: transparent;
+    color: $grey-link;
+    font-weight: 400;
+    font-size: $font-size-14;
+    transition: all 200ms ease-in;
+
+    &:hover {
+        color: $grey;
+        text-decoration: underline;
+        transition: all 150ms ease-out;
+    }
+}

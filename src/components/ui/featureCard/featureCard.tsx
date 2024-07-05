@@ -1,5 +1,5 @@
 import shoesImg from '../../../assets/shoes.jpg';
-import ButtonCart from '../button/buttonCart';
+import ButtonCart from '../button/button-cart/buttonCart';
 
 import style from './FeatureCard.module.scss';
 export interface IFeature {

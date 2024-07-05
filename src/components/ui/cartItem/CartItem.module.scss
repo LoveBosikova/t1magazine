@@ -1,0 +1,79 @@
+@import '../../../styles/variables.scss';
+
+// Начинаются стили айтема товара
+.item {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: start;
+    padding-top: .8vw;
+    padding-bottom: .8vw;
+    margin-bottom: 0.55vw;
+    background-color: transparent;
+    will-change: background-color;
+    transition: background-color 150ms ease-in;
+
+    &:hover {
+        background-color: $grey-item-backround;
+        transition: background-color 100ms ease-out;
+    }
+}
+
+.imgWrap {
+    width: 15%;
+    margin-left: 0.5vw;
+    padding: .3%;
+}
+
+.itemImg {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+}
+
+.infoWrap {
+    width: 35%;
+    padding-left: 0.5vw;
+    padding-top: 1.8vw;
+    color: $grey;
+}
+
+.info {
+    font-size: $font-size-16;
+    font-weight: 600;
+    color: inherit;
+    transition: all 150ms ease-in;
+
+    &:hover {
+        text-decoration: underline;
+        transition: all 100ms ease-out;
+    }
+}
+
+.price {
+    font-size: $font-size-18;
+    font-weight: 400;
+    color: inherit;
+}
+
+.countWrap {
+    width: 36%;
+    display: flex;
+    align-items: center;
+    padding-left: 3vw;
+    padding-right: 1.1vw;
+}
+
+.totalsWrap {
+    width: 40.8%;
+}
+
+.deleteWrap {
+    width: 13%;
+    display: flex;
+    align-items: center;
+
+    & button {
+        padding-right: 0;
+        margin-left: 1vw;
+    }
+}

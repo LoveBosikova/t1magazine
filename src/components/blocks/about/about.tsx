@@ -1,4 +1,4 @@
-import ButtonLink from '../../ui/button/buttonLink';
+import ButtonLink from '../../ui/button/button-link/buttonLink';
 import style from './About.module.scss';
 
 // Раздел о магазине одежды и обуви

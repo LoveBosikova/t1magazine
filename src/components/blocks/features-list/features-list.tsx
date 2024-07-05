@@ -1,7 +1,7 @@
 
 import Search from '../../ui/search/search';
 import FeatureCard, { IFeature } from '../../ui/featureCard/featureCard';
-import ButtonLink from '../../ui/button/buttonLink';
+import ButtonLink from '../../ui/button/button-link/buttonLink';
 
 import features from '../../../mocks/features';
 

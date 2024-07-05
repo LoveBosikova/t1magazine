@@ -1,0 +1,28 @@
+@import '../../../styles/variables.scss';
+@import '../../../styles/mixins.scss';
+
+.countWrap {
+    width: 100%;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+}
+
+.countBtn {
+    @include button;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1.12vw 1.13vw;
+
+}
+
+.countTextWrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.countText {
+    font-size: $font-size-14;
+}
