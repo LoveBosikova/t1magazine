@@ -11,9 +11,9 @@ function App() {
   return (
     <div className={styles.container}>
       <Header></Header>
+      <MainPage></MainPage>
       {/* <ProductPage></ProductPage> */}
-      {/* <MainPage></MainPage> */}
-      <CartPage></CartPage>
+      {/* <CartPage></CartPage> */}
       <Footer></Footer>
     </div>
   )

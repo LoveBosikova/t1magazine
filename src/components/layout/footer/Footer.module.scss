@@ -9,8 +9,8 @@
     width: 100%;
     height: 9vh;
     @include adoptiveContainer;
-    padding-top: 1.2vh;
-    padding-right: 7.9%;
+    padding-top: 1.35vh;
+    padding-right: 8%;
     padding-left: 9.2%;
     display: flex;
     justify-content: space-between;
@@ -30,7 +30,7 @@
 .link {
     color: $white;
     font-family: "Jost", sans-serif;
-    font-size: $font-size-12;
+    font-size: $font-size-14;
     font-weight: 600;
     
 }

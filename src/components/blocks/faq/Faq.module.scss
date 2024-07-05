@@ -5,17 +5,18 @@
     @include adoptiveContainer;
     width: 100%;
     padding-top: 4.35vw;
-    padding-bottom: 4.7vw;
+    padding-bottom: 9.78vw;
     background-color: $violet;
 }
 
 .contentWrap {
-    margin-right: 18.35%;
-    margin-left: 19.8%;
+    margin-right: 19.45%;
+    margin-left: 19.45%;
 }
 
 .title {
     margin-bottom: 1.2vw;
     color: $white;
     font-size: $font-size-36;
+    font-weight: 600;
 }

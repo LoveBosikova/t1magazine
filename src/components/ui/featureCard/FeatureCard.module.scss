@@ -1,7 +1,7 @@
 @import '../../../styles/variables.scss';
 
 .card {
-    margin-bottom: 1.7vw;
+    margin-bottom: 1.66vw;
     width: 31.4%;
 }
 
@@ -19,7 +19,7 @@
     display: flex;
     flex-wrap: nowrap;
     justify-content: space-between;
-    padding-top: 0.7vw;
+    padding-top: 0.55vw;
 }
 
 .title {
@@ -27,6 +27,7 @@
     font-size: $font-size-16;
     font-weight: 600;
     text-overflow: ellipsis;
+    margin-bottom: 1.1%;
 }
 
 .price {

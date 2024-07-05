@@ -21,9 +21,9 @@ function Nav () {
                         <CartCounter />
                     </picture>
                 </li>
+                <li className={style.menuItem}>Johnson Smith</li>
             </ul>
         </nav>
-        <span className={style.navSpan}>Johnson Smith</span>
     </div>
     )
 }
