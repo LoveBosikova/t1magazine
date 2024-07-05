@@ -2,11 +2,18 @@
 
 .btnDelete {
     border: none;
+    outline: none;
     background-color: transparent;
     color: $grey-link;
     font-weight: 400;
     font-size: $font-size-14;
     transition: all 200ms ease-in;
+
+    &:active,
+    &:focus {
+        border: none;
+        outline: none;
+    }
 
     &:hover {
         color: $grey;

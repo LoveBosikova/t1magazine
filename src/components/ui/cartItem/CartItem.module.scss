@@ -8,6 +8,7 @@
     padding-top: .8vw;
     padding-bottom: .8vw;
     margin-bottom: 0.55vw;
+    border-radius: $border-radius-4;
     background-color: transparent;
     will-change: background-color;
     transition: background-color 150ms ease-in;
@@ -24,6 +25,13 @@
     padding: .3%;
 }
 
+.imgWrapTransparent {
+    width: 15%;
+    margin-left: 0.5vw;
+    padding: .3%;
+    opacity: 60%;
+}
+
 .itemImg {
     width: 100%;
     max-width: 100%;
@@ -35,6 +43,14 @@
     padding-left: 0.5vw;
     padding-top: 1.8vw;
     color: $grey;
+}
+
+.infoWrapTransparent {
+    width: 35%;
+    padding-left: 0.5vw;
+    padding-top: 1.8vw;
+    color: $grey;
+    opacity: 60%;
 }
 
 .info {
@@ -55,12 +71,23 @@
     color: inherit;
 }
 
+// Стили для положительного число товаров с каунтером
 .countWrap {
     width: 36%;
     display: flex;
     align-items: center;
     padding-left: 3vw;
     padding-right: 1.1vw;
+}
+
+// Стили для недоступного товара в корзине без каунтера с кнопкой покупки
+.countWrapEmpty {
+    width: 48.5%;
+    display: flex;
+    align-items: center;
+    padding-left: 3vw;
+    padding-right: 1.1vw;
+    justify-content: flex-end;
 }
 
 .totalsWrap {

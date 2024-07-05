@@ -14,6 +14,14 @@
     justify-content: center;
     align-items: center;
     padding: 1.12vw 1.13vw;
+    border: none;
+    outline: none;
+
+    &:active,
+    &:focus {
+        border: none;
+        outline: none;
+    }
 
 }
 

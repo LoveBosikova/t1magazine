@@ -1,18 +1,24 @@
 import minusIcon from '../../../assets/minus.png';
 import plusIcon from '../../../assets/plus.png';
 
+import { IAddOrCountProps } from '../addOrCount/addOrCount';
+
 import style from './CountPanel.module.scss';
 
-function CountPanel () {
+
+function CountPanel (props: IAddOrCountProps) {
+
+    const { num, setNumber } = props;
+
     return (
         <div className={style.countWrap}>
-            <button className={style.countBtn}>
+            <button className={style.countBtn} onClick={()=> setNumber(num - 1)}>
                 <img src={minusIcon} alt='' />
             </button>
             <div className={style.countTextWrap}>
-                <span className={style.countText}>1 item</span>
+                <span className={style.countText}>{num} {num > 1? 'items' : 'item'}</span>
             </div>
-            <button className={style.countBtn}>
+            <button className={style.countBtn} onClick={()=> setNumber(num + 1)}>
                 <img src={plusIcon} alt='' />
             </button>
         </div>

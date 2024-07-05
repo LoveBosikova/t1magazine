@@ -9,8 +9,6 @@ function MainPage () {
         <main className={style.contentWrap}>
             <About></About>
             <FeaturesList></FeaturesList>
-
-            {/* Вопросики */}
             <Faq></Faq>
         </main>
     )

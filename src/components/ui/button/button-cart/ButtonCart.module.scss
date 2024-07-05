@@ -1,10 +1,18 @@
-@import '../../../styles/variables.scss';
-@import '../../../styles/mixins.scss';
+@import '../../../../styles/variables.scss';
+@import '../../../../styles/mixins.scss';
 
 .btn {
     @include button;
     width: 10%;
     padding: 0.8em 0.95em;
+    border: none;
+    outline: none;
+
+    &:active,
+    &:focus {
+        border: none;
+        outline: none;
+    }
 }
 
 .iconWrap {
