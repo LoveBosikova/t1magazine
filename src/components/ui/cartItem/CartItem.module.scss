@@ -56,10 +56,11 @@
 .info {
     font-size: $font-size-16;
     font-weight: 600;
-    color: inherit;
+    color: $grey;
     transition: all 150ms ease-in;
 
     &:hover {
+        color: $grey;
         text-decoration: underline;
         transition: all 100ms ease-out;
     }

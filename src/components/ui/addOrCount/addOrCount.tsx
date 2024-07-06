@@ -1,10 +1,7 @@
-import { useState } from 'react';
-import { Dispatch } from 'react';
-import { SetStateAction } from 'react';
+import { Dispatch, SetStateAction } from 'react';
+
 import CountPanel from '../countPanel/countPanel';
 import ButtonCart from '../button/button-cart/buttonCart';
-
-// import style from './AddOrCount.module.scss';
 
 export interface IAddOrCountProps {
     setNumber: Dispatch<SetStateAction<number>>,
@@ -12,10 +9,8 @@ export interface IAddOrCountProps {
 }
 
 function AddOrCount (props: IAddOrCountProps) {
-    
-    // const [number, setNumber] = useState<number>(num)
-    const { num, setNumber } = props;
 
+    const { num, setNumber } = props;
 
     return (
         <>

@@ -16,6 +16,13 @@
     align-content: start;
 }
 
+.hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    opacity: 0%;
+}
+
 .imagesWrap {
     width: 47.4%;
     max-width: 47.4%;
@@ -84,6 +91,8 @@
 
 .ratingWrap {
     width: 18%;
+    border: none;
+    outline: none;
 }
 
 .stockWrap {
@@ -192,5 +201,8 @@
     padding-top: 0.3vw;
     font-size: $font-size-16;
     font-weight: 300;
+}
 
+.countPanelWrap {
+    width: 29%;
 }

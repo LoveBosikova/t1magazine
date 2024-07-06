@@ -66,12 +66,28 @@
     padding-top: 0.55vw;
 }
 
+.textWrapMax {
+    width: fit-content;
+}
+
+.textWrapMin {
+    width: 49%;
+}
+
 .title {
     color: $grey;
     font-size: $font-size-16;
     font-weight: 600;
+    overflow: hidden;
     text-overflow: ellipsis;
     margin-bottom: 1.1%;
+    white-space: nowrap;
+}
+
+.addOrCountWrap {
+    display: flex;
+    justify-content: flex-end;
+    width: 60%;
 }
 
 .price {

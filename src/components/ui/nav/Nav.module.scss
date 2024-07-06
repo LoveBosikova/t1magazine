@@ -23,6 +23,20 @@
     color: $white;
     font-size: $font-size-14;
     font-weight: 500;
+    transition: all 200ms ease-in;
+    will-change: color, text-decoration;
+
+    &:hover {
+        color: $grey-dark-link;
+        text-decoration: underline;
+        transition: all 200ms ease-out;
+    }
+}
+
+.name {
+    color: $white;
+    font-size: $font-size-14;
+    font-weight: 500;
 }
 
 .cartWrap {

@@ -2,7 +2,7 @@
 @import '../../../styles/mixins.scss';
 
 .footer {
-    position: fixed;
+    position: absolute;
     bottom: 0;
     left: 0;
     background-color: $grey;
@@ -10,7 +10,7 @@
     height: 9vh;
     @include adoptiveContainer;
     padding-top: 1.35vh;
-    padding-right: 8%;
+    padding-right: 9%;
     padding-left: 9.2%;
     display: flex;
     justify-content: space-between;
@@ -32,5 +32,12 @@
     font-family: "Jost", sans-serif;
     font-size: $font-size-14;
     font-weight: 600;
-    
+    transition: all 200ms ease-in;
+    will-change: color, text-decoration;
+
+    &:hover {
+        color: $grey-dark-link;
+        text-decoration: underline;
+        transition: all 200ms ease-out;
+    }
 }

@@ -1,5 +1,7 @@
+import { useState } from 'react';
+
 import shoesImg from '../../../assets/shoes.jpg';
-import ButtonCart from '../button/button-cart/buttonCart';
+import AddOrCount from '../addOrCount/addOrCount';
 
 import { Link } from 'react-router-dom';
 
@@ -13,8 +15,11 @@ export interface IFeature {
 }
 
 function FeatureCard ( props : IFeature) {
+
+    const [number, setNumber] = useState<number>(0);
+
     return (
-        <div className={style.card}>
+        <li className={style.card}>
             <div className={style.contentWrap}>
                 <picture className={style.imgWrap}>
                     <img src={shoesImg} alt={props.title} className={style.img}/>
@@ -23,14 +28,16 @@ function FeatureCard ( props : IFeature) {
                     </Link>
                 </picture>
                 <div className={style.descriptionWrap}>
-                    <div className={style.textWrap}>
+                    <div className={number == 0 ? style.textWrapMax : style.textWrapMin}>
                         <h3 className={style.title}>{props.title}</h3>
                         <p className={style.price}>{`${props.price} $`}</p>
                     </div>
-                    <ButtonCart></ButtonCart>
+                    <div className={style.addOrCountWrap}>
+                        <AddOrCount num={number} setNumber={setNumber}></AddOrCount>
+                    </div>
                 </div>
             </div>
-        </div>
+        </li>
     )
 }
 

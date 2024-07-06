@@ -1,11 +1,9 @@
 import shoes from '../../../assets/whiteBoots.jpg';
 
-import { useState } from 'react';
-import { Dispatch } from 'react';
-import { SetStateAction } from 'react';
+import { useState, Dispatch, SetStateAction } from 'react';
+import { Link } from 'react-router-dom';
 
 import ButtonDelete from '../../ui/button/button-delete/buttonDelete';
-import CountPanel from '../../ui/countPanel/countPanel';
 import AddOrCount from '../addOrCount/addOrCount';
 
 import style from './CartItem.module.scss';
@@ -19,14 +17,13 @@ function CartItem () {
 
     const [number, setNumber] = useState<number>(1);
     
-
     return (
         <li className={style.item}>
             <picture className={number < 1 ? style.imgWrapTransparent : style.imgWrap}>
                 <img className={style.itemImg} src={shoes} alt='' />
             </picture>
             <div className={number < 1 ? style.infoWrapTransparent : style.infoWrap}>
-                <p className={style.info}>Essence Mascara Lash Princess</p>
+                <Link  to='/product/1' className={style.info}>Essence Mascara Lash Princess</Link>
                 <p className={style.price}>110 $</p>
             </div>
             <div className={number < 1 ? style.countWrapEmpty : style.countWrap}>

@@ -25,4 +25,9 @@
         font-size: $font-size-16;
         font-weight: 400;
     }
+
+    &:focus {
+        border: none;
+        outline: none;
+    }
 }
