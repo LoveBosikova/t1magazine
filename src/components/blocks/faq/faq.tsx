@@ -6,7 +6,7 @@ import style from './Faq.module.scss';
 
 function Faq () {
     return (
-        <section className={style.faq}>
+        <section id='faq' className={style.faq}>
             <div className={style.contentWrap}>
                 <h2 className={style.title}>FAQ</h2>
                 <div className={style.accordeonWrap}>

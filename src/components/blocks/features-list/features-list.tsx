@@ -11,7 +11,7 @@ import style from './FeaturesList.module.scss'
 
 function FeaturesList () {
   return (
-    <section className={style.features}>
+    <section id='catalog' className={style.features}>
       <div className={style.contentWrap}>
         <h2 className={style.title}>Catalog</h2>
         <Search></Search>
@@ -26,21 +26,5 @@ function FeaturesList () {
     </section>
   )
 }
-
-// function FeaturesList({ features }) {
-//   return features && features.length ? (
-//     <section className="features">
-//       <Title as="h2">Почему фермерские продукты лучше?</Title>
-//       <ul className="features__list">
-//         {features.map((feature) => (
-//           <li className="features__item" key={feature.id}>
-//             <FeatureCard {...feature} />
-//           </li>
-//         ))}
-//       </ul>
-//       <Button link="/buy">Купить</Button>
-//     </section>
-//   ) : null;
-// }
 
 export default FeaturesList;

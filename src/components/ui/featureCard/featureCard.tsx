@@ -1,6 +1,8 @@
 import shoesImg from '../../../assets/shoes.jpg';
 import ButtonCart from '../button/button-cart/buttonCart';
 
+import { Link } from 'react-router-dom';
+
 import style from './FeatureCard.module.scss';
 export interface IFeature {
     id: number | string | undefined,
@@ -14,8 +16,11 @@ function FeatureCard ( props : IFeature) {
     return (
         <div className={style.card}>
             <div className={style.contentWrap}>
-                <picture>
+                <picture className={style.imgWrap}>
                     <img src={shoesImg} alt={props.title} className={style.img}/>
+                    <Link className={style.link} to={`/product/${props.id}`}>
+                        <span className={style.LinkText}>Show details</span>
+                    </Link>
                 </picture>
                 <div className={style.descriptionWrap}>
                     <div className={style.textWrap}>
