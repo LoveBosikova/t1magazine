@@ -13,13 +13,13 @@ function CountPanel (props: IAddOrCountProps) {
     return (
         <div className={style.countWrap}>
             <button className={style.countBtn} onClick={()=> setNumber(num - 1)}>
-                <img src={minusIcon} alt='' />
+                <img className={style.icon} src={minusIcon} alt='' />
             </button>
             <div className={style.countTextWrap}>
                 <span className={style.countText}>{num} {num > 1? 'items' : 'item'}</span>
             </div>
             <button className={style.countBtn} onClick={()=> setNumber(num + 1)}>
-                <img src={plusIcon} alt='' />
+                <img className={style.icon} src={plusIcon} alt='' />
             </button>
         </div>
     )

@@ -4,9 +4,13 @@
 .btn {
     @include button;
     width: 10%;
-    padding: 0.8em 0.95em;
+    padding: 0.8vw 1.1vw;
     border: none;
     outline: none;
+
+    @media (max-width: 640px) {
+        padding: 0.61vw 0.553vw;
+    }
 
     &:active,
     &:focus {
@@ -17,10 +21,19 @@
 
 .iconWrap {
     width: 93%;
+    // @media (max-width: 640px) {
+    //     max-width: 50%;
+    //     width: 50%;
+    // }
 }
 
 .icon {
     width: 100%;
     max-width: 100%;
     height: auto;
+
+    @media (max-width: 640px) {
+        max-width: 50%;
+        width: 50%;
+    }
 }

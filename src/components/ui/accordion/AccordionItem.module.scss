@@ -53,13 +53,20 @@
 }
 
 .closePlus {
+    width: 2.7%;
     will-change: transform;
     transform: rotate(0deg);
     transition: all 250ms ease-in-out;
 }
 
 .closeCross {
+    width: 2.7%;
     will-change: transform;
     transform: rotate(45deg);
     transition: all 250ms ease-in-out;
+}
+
+.btnIcon {
+    width: 100%;
+    max-width: 100%;
 }

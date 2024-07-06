@@ -5,6 +5,11 @@
     @include button;
     border: none;
     outline: none;
+    padding: 0.7vw 1.4vw;
+
+    @media (max-width: 640px) {
+        padding: .35vw .7vw;
+    }
 
     &:active,
     &:focus {

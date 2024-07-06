@@ -18,7 +18,7 @@ function AccordionItem (props: IQuestion) {
             <button className={styles.queationWrap} onClick={()=> setIsOpen(!isOpen)}>
                 <p className={styles.questionText}>{props.question}</p>
                 <picture className={isOpen ? styles.closeCross: styles.closePlus}>
-                    <img src={closeIcon} alt='' />
+                    <img className={styles.btnIcon} src={closeIcon} alt='' />
                 </picture>
             </button>
             <p className={ isOpen ? styles.answerOpen: styles.answer }>{props.answer}</p>

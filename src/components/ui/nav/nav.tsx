@@ -11,10 +11,10 @@ function Nav () {
     <div className={style.navWrap}>
         <nav className={style.nav} aria-label='Goods4you'>
             <ul className={style.navList} role='menubar' aria-label='Goods4you menu'>
-                <li role='none'>
+                <li className={style.linkWrap} role='none'>
                     <Link to='/#catalog' role='menuitem' className={style.menuItem} tabIndex={1}> Catalog </Link>
                 </li>
-                <li role='none'>
+                <li className={style.linkWrap} role='none'>
                     <a role='menuitem' href='#faq' className={style.menuItem} tabIndex={1}> FAQ </a>
                 </li>
                 <li role='none' className={style.cartWrap}>

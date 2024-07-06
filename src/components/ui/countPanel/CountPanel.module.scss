@@ -17,6 +17,10 @@
     border: none;
     outline: none;
 
+    @media (max-width: 640px) {
+        padding: 0.61vw 0.553vw;
+    }
+
     &:active,
     &:focus {
         border: none;
@@ -33,4 +37,15 @@
 
 .countText {
     font-size: $font-size-14;
+}
+
+.icon {
+    max-width: 100%;
+    width: 100%;
+
+    @media (max-width: 640px) {
+        max-width: 50%;
+        width: 50%;
+    }
+    
 }
