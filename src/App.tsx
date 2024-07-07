@@ -3,6 +3,7 @@ import MainPage from './components/pages/main-page/mainPage';
 import ProductPage from './components/pages/product-page/productPage';
 import CartPage from './components/pages/cartPage/cartPage';
 import Footer from './components/layout/footer/footer';
+import ErrorPage from './components/pages/404/404';
 
 import { 
   Switch, 
@@ -17,14 +18,17 @@ function App() {
     <div className={styles.container}>
       <Header></Header>
       <Switch>
+          <Route exact path="/">
+            <MainPage />
+          </Route>
           <Route path="/cart">
             <CartPage />
           </Route>
           <Route path="/product">
             <ProductPage />
           </Route>
-          <Route path="/">
-            <MainPage />
+          <Route path="*">
+            <ErrorPage />
           </Route>
         </Switch>
       <Footer></Footer>

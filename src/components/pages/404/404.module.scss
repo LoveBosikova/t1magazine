@@ -1,0 +1,41 @@
+@import '../../../styles/variables.scss';
+
+.pageWrap {
+    height: 90vh;
+    background-color: $violet;
+    color: $white;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.contentWrap {
+    padding-top: 8vw;
+    padding-left: 8%;
+    padding-right: 8%;
+    text-align: center;
+}
+
+.errorText {
+    font-size: $font-size-200;
+    font-weight: 700;
+}
+
+.apologies {
+    font-size: $font-size-18;
+}
+
+.linkWrap {
+    margin-top: 2vw;
+}
+
+.link {
+    color: $white;
+    font-size: $font-size-26;
+    transition: all 200ms ease-in;
+
+    &:hover {
+        color: $grey-dark-link;
+        text-decoration: underline;
+        transition: all 150ms ease-out;
+    }
+}
