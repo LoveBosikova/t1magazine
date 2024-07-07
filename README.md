@@ -2,4 +2,4 @@
 
 # npm run dev 
 
-# give 10 points 
+# give me 10 amazing points ^^

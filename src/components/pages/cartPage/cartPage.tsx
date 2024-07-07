@@ -1,9 +1,15 @@
+import { Helmet } from 'react-helmet-async';
 
 import CartItem from '../../ui/cartItem/cartItem';
 import style from './CartPage.module.scss';
 
 function CartPage () {
     return (
+    <>
+        <Helmet>
+            <title>My cart | Goods4you</title>
+            <meta name='description' content='Cart with your goods from Goods4you' />
+        </Helmet>
         <section className={style.pageWrap}>
             <div className={style.contentWrap}>
                 <h1 className={style.title}>My cart</h1>
@@ -31,6 +37,7 @@ function CartPage () {
                 </div>
             </div>
         </section>
+    </>
     )
 }
 

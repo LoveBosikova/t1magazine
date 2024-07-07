@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Helmet } from 'react-helmet-async';
 
 import shoesImg from '../../../assets/whiteBoots.jpg';
 import Rating from '../../ui/rating/rating';
@@ -11,6 +12,11 @@ function ProductPage () {
     const [number, setNumber] = useState(0)
 
     return (
+    <>
+        <Helmet>
+            <title>Essence Mascara Lash Princess | Goods4you</title>
+            <meta name='description' content='Essence Mascara Lash Princess from Goods4you' />
+        </Helmet>
         <div className={style.page}>
             <section className={style.pageWrap}>
                 <div className={style.imagesWrap}>
@@ -71,6 +77,7 @@ function ProductPage () {
                 </div>
             </section>
         </div>
+    </>
     )
 }
 
