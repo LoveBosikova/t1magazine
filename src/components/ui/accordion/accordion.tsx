@@ -7,7 +7,7 @@ import style from './Accordion.module.scss';
 function Accordion (props: IQuestion[]) {
     return (
     <ul className={style.contentWrap}>
-        {questions.map((question: IQuestion) => <AccordionItem {...question}></AccordionItem> )}
+        {questions.map((question: IQuestion) => <AccordionItem key={question.question} {...question}></AccordionItem> )}
     </ul>
     )
 }
