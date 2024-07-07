@@ -34,6 +34,7 @@
 }
 
 .btnText {
+    color: $white;
     font-weight: 400;
     font-size: $font-size-16;
     padding-right: 2.1vw;
@@ -47,6 +48,10 @@
     align-content: center;
     justify-content: center;
     white-space: nowrap;
+
+    &:hover {
+        color: $white;
+    }
 }
 
 .bcground {

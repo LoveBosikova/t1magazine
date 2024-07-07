@@ -23,6 +23,11 @@
     &:focus {
         border: none; 
         outline: none;
+        border-top: 1px solid $white;
+    }
+
+    &:hover {
+        border-top: 1px solid $grey-dark-link;
     }
 }
 

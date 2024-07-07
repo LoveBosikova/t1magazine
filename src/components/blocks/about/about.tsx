@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 import ButtonLink from '../../ui/button/button-link/buttonLink';
 import style from './About.module.scss';
 
@@ -14,7 +16,7 @@ function About() {
         <h1 className={style.title}>Any products from famous brands <br></br> with worldwide delivery</h1>
         <p className={style.text}>We sell smartphones, laptops, clothes, shoes <br></br> and many other products at low prices</p>
         <ButtonLink>
-          <span className={style.btnText}>Go to shopping</span>
+          <a href='#catalog' className={style.btnText}>Go to shopping</a>
         </ButtonLink>
       </div>
     </section>
