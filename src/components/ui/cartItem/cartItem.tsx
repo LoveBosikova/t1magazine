@@ -6,6 +6,8 @@ import { Link } from 'react-router-dom';
 import ButtonDelete from '../../ui/button/button-delete/buttonDelete';
 import AddOrCount from '../addOrCount/addOrCount';
 
+import type { IFeature } from '../featureCard/featureCard';
+
 import style from './CartItem.module.scss';
 
 export interface IAddOrCountProps {
@@ -13,18 +15,23 @@ export interface IAddOrCountProps {
     num: number,
 }
 
-function CartItem () {
+function CartItem ( {
+    id,
+    title, 
+    price, 
+    quantity, 
+    thumbnail} : IFeature) {
 
-    const [number, setNumber] = useState<number>(1);
+    const [number, setNumber] = useState<number>(quantity);
     
     return (
         <li className={style.item}>
             <picture className={number < 1 ? style.imgWrapTransparent : style.imgWrap}>
-                <img className={style.itemImg} src={shoes} alt='' />
+                <img className={style.itemImg} src={thumbnail} alt='' />
             </picture>
             <div className={number < 1 ? style.infoWrapTransparent : style.infoWrap}>
-                <Link  to='/product/1' className={style.info}>Essence Mascara Lash Princess</Link>
-                <p className={style.price}>110 $</p>
+                <Link  to={`/product/${id}`} className={style.info}>{title}</Link>
+                <p className={style.price}>{price} $</p>
             </div>
             <div className={number < 1 ? style.countWrapEmpty : style.countWrap}>
                 <AddOrCount num={number} setNumber={setNumber}></AddOrCount>

@@ -6,12 +6,29 @@ import AddOrCount from '../addOrCount/addOrCount';
 import { Link } from 'react-router-dom';
 
 import style from './FeatureCard.module.scss';
+
+
+        //   {
+        //     "id": 144,
+        //     "title": "Cricket Helmet",
+        //     "price": 44.99,
+        //     "quantity": 4,
+        //     "total": 179.96,
+        //     "discountPercentage": 11.47,
+        //     "discountedTotal": 159.32,
+        //     "thumbnail": "https://cdn.dummyjson.com/products/images/sports-accessories/Cricket%20Helmet/thumbnail.png"
+        //   },
+
 export interface IFeature {
     id: number | string | undefined,
     title: string | undefined,
-    owner: string | undefined,
-    image: string | undefined,
     price: number | string | undefined,
+    quantity: number,
+    total: number,
+    discountPercentage: number,
+    discountedTotal: number,
+    owner: string | undefined,
+    thumbnail: string | undefined,
 }
 
 function FeatureCard ( props : IFeature) {
