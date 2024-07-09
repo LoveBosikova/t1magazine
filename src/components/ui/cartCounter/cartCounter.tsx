@@ -1,12 +1,14 @@
-import { useState } from "react";
+import { useSelector } from 'react-redux';
 
 import styles from './CartCounter.module.scss'
 
 function CartCounter () {
-    const [cartCount, setCartCount] = useState(1);
-    return (
+
+    let { amount } = useSelector((state) => state.cart);
+
+    return amount === 0 ? <></> : (
         <div className={styles.cartCounter}>
-            <span className={styles.cartCount} >{cartCount}</span>
+            <span className={styles.cartCount} >{amount}</span>
         </div>
     )
 }

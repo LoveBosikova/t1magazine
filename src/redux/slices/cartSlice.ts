@@ -14,13 +14,15 @@ export interface ICartState {
     isLoading: boolean,
     amount?: number,
     total?: number,
+    discountedTotal: number
 }
 
 const initialState: ICartState = {
     cartItems: [],
     isLoading: true,
     amount: 0,
-    total: 0
+    total: 0,
+    discountedTotal: 0
 }
 
 export const getCartItems : AsyncThunk<any, number, any> = createAsyncThunk('cart/getCartItems', 
@@ -40,15 +42,15 @@ export const cartSlice = createSlice({
 },
     extraReducers: (builder) => {
         builder.addCase(getCartItems.pending, (state, action) => {
-            console.log(action);
             state.isLoading = true;
         }),
         builder.addCase(getCartItems.fulfilled, (state, action) => {
             console.log(action);
             state.isLoading = false;
-            state.cartItems = action.payload.products;
-            state.amount = action.payload.totalProducts;
-            state.total = action.payload.total;
+            state.cartItems = action.payload.products; // Список продуктов в корзине
+            state.amount = action.payload.totalQuantity; // Количество всех продуктов в корзине
+            state.total = action.payload.total; // Стоимость всех продуктов в корзине
+            state.discountedTotal = action.payload.discountedTotal; // Стоимость всех продуктов с учётом скидки
         }),
         builder.addCase(getCartItems.rejected, (state, action) => {
             console.log(action);

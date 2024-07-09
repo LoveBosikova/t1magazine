@@ -6,12 +6,13 @@ import type { IFeature } from '../../ui/featureCard/featureCard';
 
 import CartItem from '../../ui/cartItem/cartItem';
 import style from './CartPage.module.scss';
+import Loading from '../../ui/loading/loading';
 
 function CartPage () {
 
     const dispatch = useDispatch();
 
-    const { cartItems, isLoading, amount, total } = useSelector((state) => state.cart);
+    const { cartItems, isLoading, amount, total, discountedTotal } = useSelector((state) => state.cart);
 
     return (
     <>
@@ -24,20 +25,20 @@ function CartPage () {
                 <h1 className={style.title}>My cart</h1>
                 <div className={style.cartWrap}>
                     <ul className={style.items}>
-                        { cartItems.map(({ id, title, price, quantity, thumbnail } : IFeature) => <CartItem id={id} title={title} price={price} quantity={quantity} thumbnail={thumbnail}></CartItem>)}
+                        {isLoading ? <Loading></Loading> : cartItems.map(({ id, title, price, quantity, thumbnail } : IFeature) => <CartItem id={id} title={title} price={price} quantity={quantity} thumbnail={thumbnail}></CartItem>)}
                     </ul>
                     <div className={style.totalsWrap}>
                         <div className={style.totalWrap}>
                             <p className={style.totalText}>Total count</p>
-                            <p className={style.totalCount}>3 items</p>
+                            <p className={style.totalCount}>{amount} items</p>
                         </div>
                         <div className={style.priceBeforeDiscount}>
                             <p className={style.priceBeforeText}>Price without discount</p>
-                            <p className={style.priceBeforeCount}>700$</p>
+                            <p className={style.priceBeforeCount}>{total} $</p>
                         </div>
                         <div className={style.totalPrice}>
                             <p className={style.totalPriceText}>Total price</p>
-                            <p className={style.totalPriceCount}>590$</p>
+                            <p className={style.totalPriceCount}>{discountedTotal} $</p>
                         </div>
                     </div>
                 </div>

@@ -8,7 +8,6 @@ function Header() {
       <div className={styles.contentWrap}>
         <Logo></Logo>
         <Nav></Nav>
-
       </div>
     </header>
   );
