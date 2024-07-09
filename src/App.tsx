@@ -10,9 +10,21 @@ import {
   Route } 
   from 'react-router-dom';
 
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { getCartItems } from './redux/slices/cartSlice';
+
 import styles from './App.module.scss';
 
 function App() {
+
+  const dispatch = useDispatch();
+  
+  // Инициализируем корзину, чтобы сразу подгружалась
+  useEffect(()=>{
+    dispatch(getCartItems(1))
+  },[])
+
 
   return (
     <div className={styles.container}>

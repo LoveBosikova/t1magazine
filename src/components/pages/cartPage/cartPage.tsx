@@ -1,9 +1,16 @@
 import { Helmet } from 'react-helmet-async';
 
+import { useDispatch, useSelector } from 'react-redux';
+
 import CartItem from '../../ui/cartItem/cartItem';
 import style from './CartPage.module.scss';
 
 function CartPage () {
+
+    const dispatch = useDispatch();
+    
+    const { cartItems, isLoading, amount, total } = useSelector((state) => state.cart);
+
     return (
     <>
         <Helmet>
