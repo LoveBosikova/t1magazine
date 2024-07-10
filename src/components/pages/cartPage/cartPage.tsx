@@ -10,7 +10,7 @@ import Loading from '../../ui/loading/loading';
 
 function CartPage () {
 
-    const dispatch = useDispatch();
+    // const dispatch = useDispatch();
 
     const { cartItems, isLoading, amount, total, discountedTotal } = useSelector((state) => state.cart);
 

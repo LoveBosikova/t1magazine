@@ -7,18 +7,6 @@ import { Link } from 'react-router-dom';
 
 import style from './FeatureCard.module.scss';
 
-
-        //   {
-        //     "id": 144,
-        //     "title": "Cricket Helmet",
-        //     "price": 44.99,
-        //     "quantity": 4,
-        //     "total": 179.96,
-        //     "discountPercentage": 11.47,
-        //     "discountedTotal": 159.32,
-        //     "thumbnail": "https://cdn.dummyjson.com/products/images/sports-accessories/Cricket%20Helmet/thumbnail.png"
-        //   },
-
 export interface IFeature {
     id: number | string | undefined,
     title: string | undefined,
@@ -39,7 +27,7 @@ function FeatureCard ( props : IFeature) {
         <li className={style.card}>
             <div className={style.contentWrap}>
                 <picture className={style.imgWrap}>
-                    <img src={shoesImg} alt={props.title} className={style.img}/>
+                    <img src={props.thumbnail} alt={props.title} className={style.img}/>
                     <Link className={style.link} to={`/product/${props.id}`}>
                         <span className={style.LinkText}>Show details</span>
                     </Link>

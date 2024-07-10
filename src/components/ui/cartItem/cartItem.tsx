@@ -1,5 +1,3 @@
-import shoes from '../../../assets/whiteBoots.jpg';
-
 import { useState, Dispatch, SetStateAction } from 'react';
 import { Link } from 'react-router-dom';
 
@@ -20,7 +18,8 @@ function CartItem ( {
     title, 
     price, 
     quantity, 
-    thumbnail} : IFeature) {
+    thumbnail
+} : IFeature) {
 
     const [number, setNumber] = useState<number>(quantity);
     
