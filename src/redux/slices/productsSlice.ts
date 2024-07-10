@@ -14,12 +14,17 @@ export interface IProductsState {
     limit: number
 }
 
+interface Try {
+    q: string,
+    skip: number
+}
+
 export const productsApi = createApi({
     reducerPath: 'products',
     baseQuery: fetchBaseQuery({ baseUrl: BASE_URL }),
     endpoints: (builder) => ({
-        getProductsByTitle: builder.query<IProductsState, string>({
-            query: (q = '', skip = 0) =>   `/products/search?q=${q}&limit=12&skip=${skip}`,
+        getProductsByTitle: builder.query<IProductsState, Try>({
+            query: ({q, skip}) =>   `/products/search?q=${q}&limit=12&skip=${skip}`,
         }),
     }),
 })

@@ -1,13 +1,23 @@
 import style from './ButtonLink.module.scss';
+import { MouseEventHandler } from 'react';
+import type { ReactElement, ReactPortal } from 'react';
+import type { ReactNode } from 'react';
 
-type Props = {
-  children: string | JSX.Element | JSX.Element[]
+interface Props {
+  disabled: boolean
+  addProducts: (q: string, skip: number) => void
+  q: string
+  skip: number
+  children: ReactNode
 }
 
-function ButtonLink ({ children } : Props){
+function ButtonLink (props: Props){ 
+
+  const {disabled, addProducts, q, skip} = props;
+
   return (
-    <button className={style.button}>
-      {children}
+    <button disabled={disabled} className={style.button} onClick={() => addProducts(q, skip)}>
+      {props.children}
     </button>
   );
 }

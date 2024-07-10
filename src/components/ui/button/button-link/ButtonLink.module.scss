@@ -16,4 +16,8 @@
         border: none;
         outline: none;
     }
+
+    :disabled {
+        background-color: $pink;
+    }
 }
