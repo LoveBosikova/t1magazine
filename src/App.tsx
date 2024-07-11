@@ -11,7 +11,7 @@ import {
   from 'react-router-dom';
 
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { getCartItems } from './redux/slices/cartSlice';
 
 import styles from './App.module.scss';
@@ -25,6 +25,9 @@ function App() {
     dispatch(getCartItems(1))
   },[])
 
+  // Записываем актуальный товар, на который кликнул пользователь
+  const [cuttentProductId, setCurrentProductId ] = useState(0)
+
 
   return (
     <div className={styles.container}>
@@ -37,7 +40,7 @@ function App() {
             <CartPage />
           </Route>
           <Route path="/product">
-            <ProductPage />
+            <ProductPage  />
           </Route>
           <Route path="*">
             <ErrorPage />

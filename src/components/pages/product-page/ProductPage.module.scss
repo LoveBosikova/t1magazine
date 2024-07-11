@@ -122,6 +122,13 @@
     font-size: $font-size-16;
     color: $grey-adds;
     font-weight: 400;
+    display: flex; 
+    flex-wrap: nowrap;
+    gap: 5%;
+
+    & span {
+        white-space: nowrap;
+    }
 }
 
 .add {

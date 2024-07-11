@@ -19,6 +19,8 @@ export interface IFeature {
     thumbnail: string | undefined,
 }
 
+import { useGetProductById } from '../../../redux/slices/productsSlice';
+
 function FeatureCard ( props : IFeature) {
     // количество товара в корзине
     const [number, setNumber] = useState<number>(0);

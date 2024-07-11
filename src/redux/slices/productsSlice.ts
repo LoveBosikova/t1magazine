@@ -26,8 +26,13 @@ export const productsApi = createApi({
         getProductsByTitle: builder.query<IProductsState, Try>({
             query: ({q, skip}) =>   `/products/search?q=${q}&limit=12&skip=${skip}`,
         }),
+        getProductById: builder.query<IProductsState, Try>({
+            query: (id) =>   `/products/${id}`,
+        }),
     }),
 })
 
 export const useGetProductsByTitle : any = productsApi.endpoints.getProductsByTitle.useQuery;
+
+export const useGetProductById : any = productsApi.endpoints.getProductById.useQuery;
 

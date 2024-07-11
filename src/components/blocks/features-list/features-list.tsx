@@ -7,8 +7,6 @@ import Loading from '../../ui/loading/loading';
 
 import { useGetProductsByTitle } from '../../../redux/slices/productsSlice';
 
-import useDebounce from '../../../utils/debounce';
-
 import style from './FeaturesList.module.scss'
 
 // список товаров
@@ -20,26 +18,9 @@ function FeaturesList () {
   // products - список всех подгруженных продуктов 
   const [ q, setQ ] = useState('');
   const [ skip, setSkip ] = useState(0);
-  const [ products, setProducts ] = useState<IFeature[]>([])
-  const [ isFullyLoaded, setIsFullyLoaded ] = useState(false);
+  const [ products, setProducts ] = useState<IFeature[]>([]);
 
   const { data, error, isLoading } = useGetProductsByTitle({q, skip});
-
-  console.log(data);
-
-  function debounce(func, delay) {
-    let timeoutId;
-    
-    return function executedFunction(...args) {
-      clearTimeout(timeoutId);
-      timeoutId = setTimeout(() => func.apply(this, args), delay);
-    };
-  }
-
-  const debouncedSearch = debounce(() => {
-    // Выполнение поисковых операций
-    useGetProductsByTitle({q, skip})
-  }, 1000);
 
   // Хендлер для поисковой строки
   // eсли меняется поисковой запрос, skip обнуляется и предыдущие товары обнуляются - они становятся неактуальны
@@ -49,13 +30,11 @@ function FeaturesList () {
     useGetProductsByTitle({q: event.target.value, skip: 0})
   };
 
-  
-
   // Делает запрос на подгрузку новых 12 продуктов, увеличивая показатель skip
   function addProducts(q: string, skip: number) {
     setSkip(skip + 12);
     const newSkip = skip + 12;
-    debouncedSearch(q, newSkip);
+    useGetProductsByTitle({q, skip: newSkip});
   }
 
   //Добавляем подгрузившиеся товары в массив продуктов
