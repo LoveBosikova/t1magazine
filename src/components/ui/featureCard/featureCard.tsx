@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 
-import shoesImg from '../../../assets/shoes.jpg';
 import AddOrCount from '../addOrCount/addOrCount';
 
 import { Link } from 'react-router-dom';
@@ -20,8 +20,19 @@ export interface IFeature {
 }
 
 function FeatureCard ( props : IFeature) {
-
+    // количество товара в корзине
     const [number, setNumber] = useState<number>(0);
+
+    const { cartItems } = useSelector((state) => state.cart);
+
+    // проверяем, есть ли такой айди товара в корзине. Если есть, устанавливаем значение количества товара на значение из корзины
+    //! сделать выборку айдишников в родительском классе и передать пропсом
+    useEffect(() => {
+        if (cartItems.filter((cartItem :IFeature)=> cartItem.id === props.id).length > 0) {
+            const productInCart = cartItems.filter((cartItem :IFeature)=> cartItem.id === props.id);
+            setNumber(productInCart.map((product:IFeature)=> product.quantity))
+        }
+    }, [cartItems])
 
     return (
         <li className={style.card}>

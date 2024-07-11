@@ -12,23 +12,26 @@ import style from './FeaturesList.module.scss'
 // список товаров
 
 function FeaturesList () {
+
+  // q        - запрос из поисковой строки 
+  // skip     - сколько продуктов уже загружено и нужно пропустить при следующем запросе продуктов
+  // products - список всех подгруженных продуктов 
   const [ q, setQ ] = useState('');
   const [ skip, setSkip ] = useState(0);
   const [ products, setProducts ] = useState<IFeature[]>([])
-  console.log('skip', skip);
 
   const { data, error, isLoading } = useGetProductsByTitle({q, skip});
 
-  console.log(products);
-
-  useEffect (()=> { if ( data ) setProducts([...products, ...data.products])}, [data])
-  
+  // Делает запрос на подгрузку новых 12 продуктов, увеличивая показатель skip
   function addProducts(q: string, skip: number) {
     setSkip(skip + 12);
     const newSkip = skip + 12;
     useGetProductsByTitle({q, skip: newSkip});
   }
 
+  //Добавляем подгрузившиеся товары в массив продуктов
+  useEffect (()=> { if ( data ) setProducts([...products, ...data.products])}, [data])
+  
   return (
     <section id='catalog' className={style.features}>
       <div className={style.contentWrap}>
@@ -44,7 +47,7 @@ function FeaturesList () {
           ) : null}
         </ul>
         <div className={style.btnWrap}>
-          <ButtonLink {...isLoading} addProducts={addProducts} q={q} skip={skip}><span className={style.btnText}>Show more</span></ButtonLink>
+          <ButtonLink disabled={isLoading} addProducts={addProducts} q={q} skip={skip}><span className={style.btnText}>Show more</span></ButtonLink>
         </div>
       </div>
     </section>
