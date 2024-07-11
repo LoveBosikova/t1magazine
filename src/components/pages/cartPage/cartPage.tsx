@@ -23,7 +23,10 @@ function CartPage () {
                 <h1 className={style.title}>My cart</h1>
                 <div className={style.cartWrap}>
                     <ul className={style.items}>
-                        {isLoading ? <Loading></Loading> : cartItems.map(({ id, title, price, quantity, thumbnail } : IFeature) => <CartItem id={id} title={title} price={price} quantity={quantity} thumbnail={thumbnail}></CartItem>)}
+                        {/* Если загружена корзина, проверяем, есть ли в ней что-либо. Если нет ничего - No items, иначе - список покупок */}
+                        {isLoading ? <Loading></Loading> 
+                        : !cartItems || cartItems.length === 0 ? <span>No items</span> 
+                        : cartItems.map((cartItem : IFeature) => <CartItem key={cartItem.id} {...cartItem}></CartItem>)}
                     </ul>
                     <div className={style.totalsWrap}>
                         <div className={style.totalWrap}>

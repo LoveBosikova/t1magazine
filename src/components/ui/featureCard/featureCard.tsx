@@ -19,20 +19,17 @@ export interface IFeature {
     thumbnail: string | undefined,
 }
 
-import { useGetProductById } from '../../../redux/slices/productsSlice';
-
 function FeatureCard ( props : IFeature) {
     // количество товара в корзине
     const [number, setNumber] = useState<number>(0);
 
-    const { cartItems } = useSelector((state) => state.cart);
+    const { cartItems } = useSelector((state: any) => state.cart);
 
     // проверяем, есть ли такой айди товара в корзине. Если есть, устанавливаем значение количества товара на значение из корзины
-    //! сделать выборку айдишников в родительском классе и передать пропсом
     useEffect(() => {
         if (cartItems.filter((cartItem :IFeature)=> cartItem.id === props.id).length > 0) {
             const productInCart = cartItems.filter((cartItem :IFeature)=> cartItem.id === props.id);
-            setNumber(productInCart.map((product:IFeature)=> product.quantity))
+            setNumber(productInCart.map((product: IFeature)=> product.quantity))
         }
     }, [cartItems])
 

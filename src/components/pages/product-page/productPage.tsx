@@ -1,29 +1,32 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
+import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
-
-import shoesImg from '../../../assets/whiteBoots.jpg';
-import Rating from '../../ui/rating/rating';
-import CountPanel from '../../ui/countPanel/countPanel';
-
 import { useGetProductById } from '../../../redux/slices/productsSlice';
 
-import style from './ProductPage.module.scss';
+import Rating from '../../ui/rating/rating';
+import CountPanel from '../../ui/countPanel/countPanel';
 import ErrorPage from '../404/404';
 import Loading from '../../ui/loading/loading';
 
+import { IFeature } from '../../ui/featureCard/featureCard';
+
+import style from './ProductPage.module.scss';
+import { RootState } from '../../../redux/store';
+
 function ProductPage () {
     let location = useLocation();
-
-    const [ number, setNumber ] = useState(0);
     // Определяем айди товара
     const [ id, setId ] = useState(location.pathname.split('/')[2])
     // Отправляем запрос на бек
     const { data, error, isLoading } = useGetProductById(id);
 
-    console.log(data);
+    // Смотрим, есть ли товар в корзине и устанавливаем количество товара в корзине
+    const { cartItems } = useSelector((state: RootState) => state.cart);
+    const countInCart = cartItems.filter((cartItem: IFeature) => cartItem.id == id) 
+    const [ number, setNumber ] = useState(countInCart.length > 0 ? countInCart[0].quantity : 0);
 
-    //
+    // Устанавливаем главную картинку
     const [ mainImg, setMainImg ] = useState('');
 
     function setMain(src: string){
