@@ -2,4 +2,10 @@
 
 # npm run dev 
 
-# give me 10 amazing points ^^
+# npm run storybook
+
+logo - molecule
+footer - atom
+
+accordionItem - molecule
+accordion - atom
