@@ -7,10 +7,11 @@ import type { IFeature } from '../../ui/featureCard/featureCard';
 import CartItem from '../../ui/cartItem/cartItem';
 import style from './CartPage.module.scss';
 import Loading from '../../ui/loading/loading';
+import { RootState } from '../../../redux/store';
 
 function CartPage () {
 
-    const { cartItems, isLoading, amount, total, discountedTotal } = useSelector((state) => state.cart);
+    const { cartItems, isLoading, amount, total, discountedTotal } = useSelector((state: RootState) => state.cart);
 
     return (
     <>

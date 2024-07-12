@@ -10,7 +10,7 @@ function Faq () {
             <div className={style.contentWrap}>
                 <h2 className={style.title}>FAQ</h2>
                 <div className={style.accordeonWrap}>
-                    <Accordion {...questions}></Accordion>
+                    <Accordion questions={questions}></Accordion>
                 </div>
             </div>
         </section>
