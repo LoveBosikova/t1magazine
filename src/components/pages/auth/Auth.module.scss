@@ -1,0 +1,39 @@
+@import '../../../styles/variables.scss';
+@import '../../../styles/mixins.scss';
+
+.pageWrap {
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 10.25vw;
+    padding-right: 29vw;
+    padding-left: 29vw;
+}
+
+.title {
+    text-align: center;
+    font-size: $font-size-36;
+    margin-bottom: 3.8vw;
+}
+
+.fieldset {
+    display: flex;
+    flex-direction: column;
+    padding: 4.2vw;
+    border: 1px solid $grey-input;
+    border: $border-radius-4;
+    outline: none;
+}
+
+.nameInput,
+.passwordInput {
+    @include input;
+    margin-bottom: 4.1vw;
+}
+
+.btn {
+    @include button;
+    width: 37%;
+    padding: 1.4vw 2vw;
+    margin-left: auto;
+    margin-right: auto;
+}

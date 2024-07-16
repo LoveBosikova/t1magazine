@@ -26,7 +26,6 @@
     align-content: center;
     justify-content: center;
     min-width: fit-content;
-    // width: fit-content;
     background-color: $red;
     background-image: none;
     color: $white;
@@ -53,4 +52,26 @@
     width: 1px;
     height: 1px;
     opacity: 0%;
+}
+
+@mixin input {
+    width: 100%;
+    border: none;
+    background-color: $grey-input;
+    border-radius: $border-radius-4;
+    padding-top: 1.33vw;
+    padding-bottom: 1.33vw;
+    padding-left: 1.5vw;
+
+    &::placeholder {
+        font-family: "Jost", sans-serif !important;
+        color: $grey-placeholder;
+        font-size: $font-size-16;
+        font-weight: 400;
+    }
+
+    &:focus {
+        border: none;
+        outline: none;
+    }
 }
