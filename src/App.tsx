@@ -54,19 +54,29 @@ function App() {
   const [currentUser, setCurrentUser] = useState<null | IUser>(null);
   let {user} = useContext(userContext);
 
+  // Если есть токен, то при загрузке запускаем футентификацию 
   useEffect(()=> {
-    fetch('https://dummyjson.com/auth/me', {
+    cookieToken && fetch('https://dummyjson.com/auth/me', {
       method: 'GET',
       headers: {
       'Authorization': `Bearer ${cookieToken}`, 
     }, 
   })
-  .then(res => res.json())
+  .then(res =>{
+    // Если происходит ошибка инициализации - токен протух, то ставим незалогиненное состояние, 
+    // что по роуту отправляет пользователя на страницу аутентификации
+    if (!res.ok) {
+    console.log('ошибка', res.status);
+    setLoggedIn(false)
+    }
+      return res.json()
+  })
   .then(curUser => {
+    console.log(curUser);
     setCurrentUser(curUser);
     dispatch(getCartItems(curUser.id))
-    user = curUser;
-  });
+    user = {...curUser};
+  }) 
   }, [loggedIn])
 
   console.log(currentUser);

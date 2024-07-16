@@ -41,7 +41,7 @@ function Auth (props: {setLoggedIn: any}) {
             body: JSON.stringify({
                 username: login,
                 password: password,
-                expiresInMins: 2000, 
+                expiresInMins: 1, 
             })
         })
         .then(res => res.json())
@@ -51,7 +51,7 @@ function Auth (props: {setLoggedIn: any}) {
             localStorage.setItem('token', user.token)
             setIsLoading(false)
             dispatch(getCartItems(user.id))
-            console.log(user);
+            // console.log(user);
             setLoggedIn(true)
         });
     }
