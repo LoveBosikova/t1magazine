@@ -43,14 +43,11 @@ function App() {
   // Смотрим, есть ли токен в куках
   const cookieToken = localStorage.getItem('token');
   
-  console.log(cookieToken);
-  
-  // localStorage.clear()
-  
   // Устанавливаем значение логирован ли ползьзователь 
   // в зависимости от этого в роутах перенаправляем пользователя на страницу аутентификации или нет
   const [loggedIn, setLoggedIn] = useState(!!cookieToken);
 
+  // Состояния текущего юзера в стейте и в контексте
   const [currentUser, setCurrentUser] = useState<null | IUser>(null);
   let {user} = useContext(userContext);
 
@@ -72,14 +69,15 @@ function App() {
       return res.json()
   })
   .then(curUser => {
-    console.log(curUser);
+    // когда получаем юзера, обновляем информацию о его корзине и записываем данные в контекст и стейт
+    // console.log(curUser);
     setCurrentUser(curUser);
     dispatch(getCartItems(curUser.id))
     user = {...curUser};
   }) 
   }, [loggedIn])
 
-  console.log(currentUser);
+  // console.log(currentUser);
 
   return (
   <userContext.Provider value={{
@@ -88,6 +86,8 @@ function App() {
     <div className={styles.container}>
       <Header></Header>
       <Switch>
+        {/* Со всех страниц отправляем незалогиненного пользователя на логин, 
+        но если залогиненный хочет на эту страницу, отправляем на главную */}
           <Route exact path="/">
             {loggedIn ? <MainPage /> : <Redirect to="/login" /> }
           </Route>

@@ -4,6 +4,7 @@ import cart from '../../../assets/cart.png';
 import CartCounter from '../cartCounter/cartCounter';
 
 import style from './Nav.module.scss';
+import UserName from "../userName/userName";
 
 
 function Nav () {
@@ -25,7 +26,7 @@ function Nav () {
                         <CartCounter />
                     </picture>
                 </li>
-                <li className={style.name}>Johnson Smith</li>
+                <UserName></UserName>
             </ul>
         </nav>
     </div>
