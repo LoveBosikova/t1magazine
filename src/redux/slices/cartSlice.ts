@@ -39,7 +39,34 @@ export const cartSlice = createSlice({
     name: 'cart',
     initialState,
     reducers: {
-},
+        // removeItem: (state, action) => {
+        //     const itemId = action.payload;
+        //     state.cartItems = state.cartItems.filter((item) => item.id !== itemId);
+        // },
+        increase: (state, { payload }) => {
+            console.log(payload);
+            // const cartItem = state.cartItems.find((item) => console.log(item))
+
+            const cartItem = state.cartItems.find((item) => item.id === payload)
+            cartItem.quantity = cartItem.quantity + 1;
+            // console.log(state);
+        },
+        decrease: (state, { payload }) => {
+            const cartItem = state.cartItems.find((item) => item.id === payload)
+            cartItem.quantity = cartItem.quantity - 1;
+            console.log(state);
+        },
+        // calculateTotals: (state) => {
+        //     let amount = 0;
+        //     let total = 0;
+        //     state.cartItems.forEach((item) => {
+        //         amount += item.quantity;
+        //         total += item.quantity * item.price;
+        //     });
+        //     state.amount = amount;
+        //     state.total = total;
+        // },
+    },
     extraReducers: (builder) => {
         builder.addCase(getCartItems.pending, (state, action) => {
             state.isLoading = true;
@@ -59,6 +86,6 @@ export const cartSlice = createSlice({
     },
 });
 
-// export const { clearCart, removeItem, increase, decrease, calculateTotals } = cartSlice.actions;
+export const { increase, decrease } = cartSlice.actions;
 
 export default cartSlice.reducer;

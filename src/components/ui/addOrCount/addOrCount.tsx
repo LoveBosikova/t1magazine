@@ -1,20 +1,27 @@
-import { Dispatch, SetStateAction } from 'react';
+import { Dispatch, SetStateAction, useState } from 'react';
 
 import CountPanel from '../countPanel/countPanel';
 import ButtonCart from '../button/button-cart/buttonCart';
 
+export interface IIncrease {
+    id: number,
+    quantity: number
+}
+
 export interface IAddOrCountProps {
-    setNumber: Dispatch<SetStateAction<number>>,
+    increaseOnClick: ({ id, quantity }: IIncrease) => void,
     num: number,
+    id: number
 }
 
 function AddOrCount (props: IAddOrCountProps) {
 
-    const { num, setNumber } = props;
+    const { id, num, increaseOnClick } = props;
+    const [number, setNumber] = useState(0)
 
     return (
         <>
-            {num > 0 ? <CountPanel num={num} setNumber={setNumber}></CountPanel> : <ButtonCart setNumber={setNumber}></ButtonCart>}
+            {num > 0 ? <CountPanel id={id} num={num} increaseOnClick={()=> increaseOnClick({id: id, quantity: num})}></CountPanel> : <ButtonCart setNumber={setNumber}></ButtonCart>}
         </>
     )
 }

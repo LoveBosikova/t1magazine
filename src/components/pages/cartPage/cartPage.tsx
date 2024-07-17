@@ -13,6 +13,8 @@ function CartPage () {
 
     const { cartItems, isLoading, amount, total, discountedTotal } = useSelector((state: RootState) => state.cart);
 
+    console.log(cartItems);
+
     return (
     <>
         <Helmet>

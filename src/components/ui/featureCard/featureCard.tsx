@@ -8,9 +8,9 @@ import { Link } from 'react-router-dom';
 import style from './FeatureCard.module.scss';
 
 export interface IFeature {
-    id: number | string | undefined,
+    id: number,
     title: string | undefined,
-    price: number | string | undefined,
+    price: number | string,
     quantity: number,
     total: number,
     discountPercentage: number,

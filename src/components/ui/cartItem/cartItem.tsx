@@ -8,10 +8,10 @@ import type { IFeature } from '../featureCard/featureCard';
 
 import style from './CartItem.module.scss';
 
-export interface IAddOrCountProps {
-    setNumber: Dispatch<SetStateAction<number>>,
-    num: number,
-}
+import { increase } from '../../../redux/slices/cartSlice';
+import { useDispatch } from 'react-redux';
+
+import { IIncrease } from '../addOrCount/addOrCount';
 
 function CartItem ( {
     id,
@@ -21,7 +21,16 @@ function CartItem ( {
     thumbnail
 } : IFeature) {
 
+    const dispatch = useDispatch();
+
     const [number, setNumber] = useState<number>(quantity);
+
+
+    function increaseCount ({id, quantity} : IIncrease) {
+        setNumber(quantity + 1)
+        console.log(id);
+        dispatch(increase(id))
+    }
     
     return (
         <li className={style.item}>
@@ -33,7 +42,7 @@ function CartItem ( {
                 <p className={style.price}>{price} $</p>
             </div>
             <div className={number < 1 ? style.countWrapEmpty : style.countWrap}>
-                <AddOrCount num={number} setNumber={setNumber}></AddOrCount>
+                <AddOrCount num={number} id={id} increaseOnClick={increaseCount}></AddOrCount>
             </div>
             {number < 1 ? <></> : <div className={style.deleteWrap}><ButtonDelete setNumber={setNumber}></ButtonDelete></div>}
         </li>
