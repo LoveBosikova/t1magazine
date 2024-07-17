@@ -1,3 +1,4 @@
+import { getCartItems } from './cartSlice';
 import axios from "axios";
 import { 
     createAsyncThunk,
@@ -10,7 +11,8 @@ import { BASE_URL } from "../../api/api";
 import { IFeature } from "../../components/ui/featureCard/featureCard";
 
 export interface ICartState {
-    cartItems: IFeature[]
+    cartId: number,
+    cartItems: IFeature[],
     isLoading: boolean,
     amount?: number,
     total?: number,
@@ -18,6 +20,7 @@ export interface ICartState {
 }
 
 const initialState: ICartState = {
+    cartId: 0,
     cartItems: [],
     isLoading: true,
     amount: 0,
@@ -39,22 +42,25 @@ export const cartSlice = createSlice({
     name: 'cart',
     initialState,
     reducers: {
-        // removeItem: (state, action) => {
-        //     const itemId = action.payload;
-        //     state.cartItems = state.cartItems.filter((item) => item.id !== itemId);
-        // },
-        increase: (state, { payload }) => {
+        updateCart: (state, { payload }) => {
             console.log(payload);
-            // const cartItem = state.cartItems.find((item) => console.log(item))
-
+            state.cartId = payload.id;
+            state.cartItems = payload.products; // Список продуктов в корзине
+            state.amount = payload.totalQuantity;  // Количество всех продуктов в корзине
+            state.total = payload.total; // Стоимость всех продуктов в корзине
+            state.discountedTotal = payload.discountedTotal; // Стоимость всех продуктов с учётом скидки
+        },
+        increase: (state, { payload }) => {
             const cartItem = state.cartItems.find((item) => item.id === payload)
             cartItem.quantity = cartItem.quantity + 1;
-            // console.log(state);
         },
         decrease: (state, { payload }) => {
             const cartItem = state.cartItems.find((item) => item.id === payload)
             cartItem.quantity = cartItem.quantity - 1;
-            console.log(state);
+        },
+        deleteItem: (state, { payload }) => {
+            const cartItem = state.cartItems.find((item) => item.id === payload)
+            cartItem.quantity = 0;
         },
         // calculateTotals: (state) => {
         //     let amount = 0;
@@ -72,20 +78,19 @@ export const cartSlice = createSlice({
             state.isLoading = true;
         }),
         builder.addCase(getCartItems.fulfilled, (state, action) => {
-            console.log(action);
             state.isLoading = false;
+            state.cartId = action.payload.id; // айди корзины
             state.cartItems = action.payload.products; // Список продуктов в корзине
             state.amount = action.payload.totalQuantity; // Количество всех продуктов в корзине
             state.total = action.payload.total; // Стоимость всех продуктов в корзине
             state.discountedTotal = action.payload.discountedTotal; // Стоимость всех продуктов с учётом скидки
         }),
         builder.addCase(getCartItems.rejected, (state, action) => {
-            console.log(action);
             state.isLoading = false;
         })
     },
 });
 
-export const { increase, decrease } = cartSlice.actions;
+export const { increase, decrease, deleteItem, updateCart } = cartSlice.actions;
 
 export default cartSlice.reducer;

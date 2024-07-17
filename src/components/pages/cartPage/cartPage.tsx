@@ -34,15 +34,15 @@ function CartPage () {
                     <div className={style.totalsWrap}>
                         <div className={style.totalWrap}>
                             <p className={style.totalText}>Total count</p>
-                            <p className={style.totalCount}>{amount} items</p>
+                            <p className={style.totalCount}>{amount ? amount.toFixed(2) : `0`} items</p>
                         </div>
                         <div className={style.priceBeforeDiscount}>
                             <p className={style.priceBeforeText}>Price without discount</p>
-                            <p className={style.priceBeforeCount}>{total} $</p>
+                            <p className={style.priceBeforeCount}>{total ? total.toFixed(2) : `0`} $</p>
                         </div>
                         <div className={style.totalPrice}>
                             <p className={style.totalPriceText}>Total price</p>
-                            <p className={style.totalPriceCount}>{discountedTotal} $</p>
+                            <p className={style.totalPriceCount}>{discountedTotal.toFixed(2)} $</p>
                         </div>
                     </div>
                 </div>

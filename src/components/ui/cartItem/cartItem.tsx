@@ -1,17 +1,17 @@
-import { useState, Dispatch, SetStateAction } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 
 import ButtonDelete from '../../ui/button/button-delete/buttonDelete';
 import AddOrCount from '../addOrCount/addOrCount';
 
 import type { IFeature } from '../featureCard/featureCard';
 
+import { increase, decrease, deleteItem, updateCart } from '../../../redux/slices/cartSlice';
+import { IIncrease, IDecrease, IDelete, IUpdateCart } from '../addOrCount/addOrCount';
+import { RootState } from '../../../redux/store';
+
 import style from './CartItem.module.scss';
-
-import { increase } from '../../../redux/slices/cartSlice';
-import { useDispatch } from 'react-redux';
-
-import { IIncrease } from '../addOrCount/addOrCount';
 
 function CartItem ( {
     id,
@@ -23,13 +23,50 @@ function CartItem ( {
 
     const dispatch = useDispatch();
 
+    const { cartId, cartItems, isLoading, amount, total, discountedTotal } = useSelector((state: RootState) => state.cart);
+
     const [number, setNumber] = useState<number>(quantity);
 
-
+    // функция для увеличения товаров в корзине
     function increaseCount ({id, quantity} : IIncrease) {
         setNumber(quantity + 1)
-        console.log(id);
         dispatch(increase(id))
+    }
+
+    // функция для уменьшения товаров в корзине
+    function decreaseCount ({id, quantity} : IDecrease) {
+        setNumber(quantity - 1)
+        dispatch(decrease(id))
+
+        const newProducts = cartItems.map((cartItem: IFeature) => { 
+            if (cartItem.id == id){
+                const newCartItem ={...cartItem}
+                newCartItem.quantity = cartItem.quantity - 1;
+                // newCartItem.total = (cartItem.quantity - 1)*cartItem.price;
+                console.log(`total`, (cartItem.quantity - 1)*cartItem.price);
+                return newCartItem;
+            } else if (cartItem.id !== id) {
+                return cartItem;
+            }})
+
+            console.log("new", newProducts);
+        
+        fetch(`https://dummyjson.com/carts/${cartId}`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+            merge: false,
+            products: newProducts
+            })
+        })
+        .then(res => res.json())
+        .then(newCart => dispatch(updateCart(newCart)));
+    }
+
+    // функция для удаления товара из корзины
+    function deleteProduct ({id} : IDelete) {
+        setNumber(0)
+        dispatch(deleteItem(id))
     }
     
     return (
@@ -42,9 +79,9 @@ function CartItem ( {
                 <p className={style.price}>{price} $</p>
             </div>
             <div className={number < 1 ? style.countWrapEmpty : style.countWrap}>
-                <AddOrCount num={number} id={id} increaseOnClick={increaseCount}></AddOrCount>
+                <AddOrCount num={number} id={id} increaseOnClick={increaseCount} decreaseOnClick={decreaseCount}></AddOrCount>
             </div>
-            {number < 1 ? <></> : <div className={style.deleteWrap}><ButtonDelete setNumber={setNumber}></ButtonDelete></div>}
+            {number < 1 ? <></> : <div className={style.deleteWrap}><ButtonDelete id={id} deleteOnClick={deleteProduct}></ButtonDelete></div>}
         </li>
     )
 }

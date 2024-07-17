@@ -5,16 +5,13 @@ import { IAddOrCountProps } from '../addOrCount/addOrCount';
 
 import style from './CountPanel.module.scss';
 
-import { increase, decrease } from '../../../redux/slices/cartSlice';
-
-
 function CountPanel (props: IAddOrCountProps) {
 
-    const { num, increaseOnClick, id} = props;
+    const {id, num, increaseOnClick, decreaseOnClick} = props;
 
     return (
         <div className={style.countWrap}>
-            <button className={style.countBtn} onClick={()=> increaseOnClick({id: id, quantity: num})}>
+            <button className={style.countBtn} onClick={()=> decreaseOnClick({id: id, quantity: num})}>
                 <img className={style.icon} src={minusIcon} alt='' />
             </button>
             <div className={style.countTextWrap}>

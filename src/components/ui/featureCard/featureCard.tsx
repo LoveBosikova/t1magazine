@@ -9,8 +9,8 @@ import style from './FeatureCard.module.scss';
 
 export interface IFeature {
     id: number,
-    title: string | undefined,
-    price: number | string,
+    title: string,
+    price: number,
     quantity: number,
     total: number,
     discountPercentage: number,
