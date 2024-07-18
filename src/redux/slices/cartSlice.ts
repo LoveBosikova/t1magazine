@@ -1,11 +1,9 @@
-import { getCartItems } from './cartSlice';
 import axios from "axios";
 import { 
     createAsyncThunk,
     createSlice,
     AsyncThunk 
 } from "@reduxjs/toolkit";
-
 
 import { BASE_URL } from "../../api/api";
 import { IFeature } from "../../components/ui/featureCard/featureCard";
@@ -31,8 +29,9 @@ const initialState: ICartState = {
 export const getCartItems : AsyncThunk<any, number, any> = createAsyncThunk('cart/getCartItems', 
     async (num: number) => {
     try {
-        const resp = await axios(`${BASE_URL}/carts/${num}`);
-        return resp.data
+        const resp = await axios(`${BASE_URL}/carts/user/${num}`);
+        console.log( resp.data.carts[0]);
+        return resp.data.carts[0]
     } catch (error) {
         return console.log(error);
     }
