@@ -71,13 +71,11 @@ function App() {
   .then(curUser => {
     // когда получаем юзера, обновляем информацию о его корзине и записываем данные в контекст и стейт
     setCurrentUser(curUser);
-    // setLoggedIn(true)
     dispatch(getCartItems(curUser.id))
     user = {...curUser};
   }) 
   }, [loggedIn])
 
-  // console.log(currentUser);
 
   return (
   <userContext.Provider value={{

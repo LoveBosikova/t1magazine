@@ -23,7 +23,20 @@ export interface IFeature {
     thumbnail: string | undefined,
 }
 
-function FeatureCard ( props : IFeature) {
+export interface IFeatureCardProps {
+    id: number,
+    title: string,
+    price: number,
+    quantity: number,
+    total: number,
+    discountPercentage: number,
+    discountedTotal: number,
+    owner: string | undefined,
+    thumbnail: string | undefined,
+    products: IFeature[]
+}
+
+function FeatureCard ( props : IFeatureCardProps ) {
 
     const dispatch = useDispatch();
 
@@ -49,14 +62,26 @@ function FeatureCard ( props : IFeature) {
         setNumber(quantity + 1)
         dispatch(increase(id))
         // обновляем массив продуктов с учётом нового количества товара
-        const newProducts = cartItems.map((cartItem: IFeature) => { 
-            if (cartItem.id == id){
-                const newCartItem ={...cartItem}
-                newCartItem.quantity = cartItem.quantity + 1;
-                return newCartItem;
-            } else if (cartItem.id !== id) {
-                return cartItem;
-            }})
+        // Два сценария - если продукт уже есть в корзине и если его нет
+        console.log(cartItems.find((cartItem : IFeature)=> cartItem.id === id));
+
+        let newProducts;
+
+        if (cartItems.find((cartItem : IFeature)=> cartItem.id === id)) {
+            // если товар с таким айди уже есть в корзине, перебираем корзину и увеличивваем количество нужного продукта 
+            newProducts = cartItems.map((cartItem: IFeature) => { 
+                if (cartItem.id === id){
+                    const newCartItem ={...cartItem}
+                    newCartItem.quantity = cartItem.quantity + 1;
+                    return newCartItem;
+                } else if (cartItem.id !== id) {
+                    return cartItem;
+                }})
+        } else if (!cartItems.find((cartItem : IFeature)=> cartItem.id === id)) {
+            // если такого товара еще нет, добавляем его в массив
+            const newProduct = props.products.filter((product: IFeature) => product.id === id);
+            newProducts = [...cartItems, ...newProduct];
+        }
         // Отправляем пут-запрос на сервер с новым набором продуктов
         // в ответ получаем новую корзину, кладём её в стор корзины
         fetch(`https://dummyjson.com/carts/${cartId}`, {

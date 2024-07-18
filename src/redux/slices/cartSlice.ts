@@ -42,7 +42,7 @@ export const cartSlice = createSlice({
     initialState,
     reducers: {
         updateCart: (state, { payload }) => {
-            // console.log(payload);
+            console.log(payload);
             state.cartId = payload.id; // состояние загрузки корзины 
             state.cartItems = payload.products; // Список продуктов в корзине
             state.amount = payload.totalQuantity;  // Количество всех продуктов в корзине
@@ -67,6 +67,7 @@ export const cartSlice = createSlice({
             state.isLoading = true;
         }),
         builder.addCase(getCartItems.fulfilled, (state, action) => {
+            console.log(action.payload, action.payload.id);
             state.isLoading = false; // состояние загрузки корзины 
             state.cartId = action.payload.id; // айди корзины
             state.cartItems = action.payload.products; // Список продуктов в корзине

@@ -51,7 +51,7 @@ function FeaturesList () {
           ) : isLoading ? (
             <Loading></Loading>
           ) : data ? (
-            products.map((feature : IFeature) => <FeatureCard {...feature} key={`${feature.id}${feature.title}`}></FeatureCard>) 
+            products.map((feature : IFeature) => <FeatureCard products={products} {...feature} key={`${feature.id}${feature.title}`}></FeatureCard>) 
           ) : null}
         </ul>
         {error ? (
