@@ -51,7 +51,7 @@ function App() {
   const [currentUser, setCurrentUser] = useState<null | IUser>(null);
   let {user} = useContext(userContext);
 
-  // Если есть токен, то при загрузке запускаем футентификацию 
+  // Если есть токен, то при загрузке запускаем аутентификацию 
   useEffect(()=> {
     cookieToken && fetch('https://dummyjson.com/auth/me', {
       method: 'GET',
@@ -70,8 +70,8 @@ function App() {
   })
   .then(curUser => {
     // когда получаем юзера, обновляем информацию о его корзине и записываем данные в контекст и стейт
-    // console.log(curUser);
     setCurrentUser(curUser);
+    // setLoggedIn(true)
     dispatch(getCartItems(curUser.id))
     user = {...curUser};
   }) 

@@ -23,7 +23,7 @@ function CartItem ( {
 
     const dispatch = useDispatch();
 
-    const { cartId, cartItems, isLoading, amount, total, discountedTotal } = useSelector((state: RootState) => state.cart);
+    const { cartId, cartItems } = useSelector((state: RootState) => state.cart);
 
     const [number, setNumber] = useState<number>(quantity);
 
@@ -31,26 +31,44 @@ function CartItem ( {
     function increaseCount ({id, quantity} : IIncrease) {
         setNumber(quantity + 1)
         dispatch(increase(id))
+        // обновляем массив продуктов с учётом нового количества товара
+        const newProducts = cartItems.map((cartItem: IFeature) => { 
+            if (cartItem.id == id){
+                const newCartItem ={...cartItem}
+                newCartItem.quantity = cartItem.quantity + 1;
+                return newCartItem;
+            } else if (cartItem.id !== id) {
+                return cartItem;
+            }})
+        // Отправляем пут-запрос на сервер с новым набором продуктов
+        // в ответ получаем новую корзину, кладём её в стор корзины
+        fetch(`https://dummyjson.com/carts/${cartId}`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+            merge: false,
+            products: newProducts
+            })
+        })
+        .then(res => res.json())
+        .then(newCart => dispatch(updateCart(newCart)));
     }
 
     // функция для уменьшения товаров в корзине
     function decreaseCount ({id, quantity} : IDecrease) {
         setNumber(quantity - 1)
         dispatch(decrease(id))
-
+        // обновляем массив продуктов с учётом нового количества товара
         const newProducts = cartItems.map((cartItem: IFeature) => { 
             if (cartItem.id == id){
                 const newCartItem ={...cartItem}
                 newCartItem.quantity = cartItem.quantity - 1;
-                // newCartItem.total = (cartItem.quantity - 1)*cartItem.price;
-                console.log(`total`, (cartItem.quantity - 1)*cartItem.price);
                 return newCartItem;
             } else if (cartItem.id !== id) {
                 return cartItem;
             }})
-
-            console.log("new", newProducts);
-        
+        // Отправляем пут-запрос на сервер с новым набором продуктов
+        // в ответ получаем новую корзину, кладём её в стор корзины
         fetch(`https://dummyjson.com/carts/${cartId}`, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
@@ -67,6 +85,27 @@ function CartItem ( {
     function deleteProduct ({id} : IDelete) {
         setNumber(0)
         dispatch(deleteItem(id))
+        // обновляем массив продуктов с учётом нового количества товара
+        const newProducts = cartItems.map((cartItem: IFeature) => { 
+            if (cartItem.id == id){
+                const newCartItem ={...cartItem}
+                newCartItem.quantity = 0;
+                return newCartItem;
+            } else if (cartItem.id !== id) {
+                return cartItem;
+            }})
+        // Отправляем пут-запрос на сервер с новым набором продуктов
+        // в ответ получаем новую корзину, кладём её в стор корзины
+        fetch(`https://dummyjson.com/carts/${cartId}`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+            merge: false,
+            products: newProducts
+            })
+        })
+        .then(res => res.json())
+        .then(newCart => dispatch(updateCart(newCart)));
     }
     
     return (
@@ -79,7 +118,12 @@ function CartItem ( {
                 <p className={style.price}>{price} $</p>
             </div>
             <div className={number < 1 ? style.countWrapEmpty : style.countWrap}>
-                <AddOrCount num={number} id={id} increaseOnClick={increaseCount} decreaseOnClick={decreaseCount}></AddOrCount>
+                <AddOrCount 
+                num={number} 
+                id={id} 
+                increaseOnClick={increaseCount} 
+                decreaseOnClick={decreaseCount}>
+                </AddOrCount>
             </div>
             {number < 1 ? <></> : <div className={style.deleteWrap}><ButtonDelete id={id} deleteOnClick={deleteProduct}></ButtonDelete></div>}
         </li>

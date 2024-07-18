@@ -13,7 +13,7 @@ function CartPage () {
 
     const { cartItems, isLoading, amount, total, discountedTotal } = useSelector((state: RootState) => state.cart);
 
-    console.log(cartItems);
+    // console.log(cartItems);
 
     return (
     <>
@@ -34,7 +34,7 @@ function CartPage () {
                     <div className={style.totalsWrap}>
                         <div className={style.totalWrap}>
                             <p className={style.totalText}>Total count</p>
-                            <p className={style.totalCount}>{amount ? amount.toFixed(2) : `0`} items</p>
+                            <p className={style.totalCount}>{amount ? amount : `0`} items</p>
                         </div>
                         <div className={style.priceBeforeDiscount}>
                             <p className={style.priceBeforeText}>Price without discount</p>
