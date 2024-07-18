@@ -42,6 +42,7 @@ export const cartSlice = createSlice({
     initialState,
     reducers: {
         updateCart: (state, { payload }) => {
+            // console.log(payload);
             state.cartId = payload.id; // состояние загрузки корзины 
             state.cartItems = payload.products; // Список продуктов в корзине
             state.amount = payload.totalQuantity;  // Количество всех продуктов в корзине

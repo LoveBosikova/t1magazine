@@ -7,17 +7,17 @@ import style from './CountPanel.module.scss';
 
 function CountPanel (props: IAddOrCountProps) {
 
-    const {id, num, increaseOnClick, decreaseOnClick} = props;
+    const {id, num, isLoading, increaseOnClick, decreaseOnClick} = props;
 
     return (
         <div className={style.countWrap}>
-            <button className={style.countBtn} onClick={()=> decreaseOnClick({id: id, quantity: num})}>
+            <button disabled={isLoading} className={style.countBtn} onClick={()=> decreaseOnClick({id: id, quantity: num})}>
                 <img className={style.icon} src={minusIcon} alt='' />
             </button>
             <div className={style.countTextWrap}>
                 <span className={style.countText}>{num} {num > 1? 'items' : 'item'}</span>
             </div>
-            <button className={style.countBtn} onClick={()=> increaseOnClick({id: id, quantity: num})}>
+            <button disabled={isLoading} className={style.countBtn} onClick={()=> increaseOnClick({id: id, quantity: num})}>
                 <img className={style.icon} src={plusIcon} alt='' />
             </button>
         </div>

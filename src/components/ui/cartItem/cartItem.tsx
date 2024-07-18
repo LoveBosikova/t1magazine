@@ -8,7 +8,7 @@ import AddOrCount from '../addOrCount/addOrCount';
 import type { IFeature } from '../featureCard/featureCard';
 
 import { increase, decrease, deleteItem, updateCart } from '../../../redux/slices/cartSlice';
-import { IIncrease, IDecrease, IDelete, IUpdateCart } from '../addOrCount/addOrCount';
+import { IIncrease, IDecrease, IDelete } from '../addOrCount/addOrCount';
 import { RootState } from '../../../redux/store';
 
 import style from './CartItem.module.scss';
@@ -25,10 +25,14 @@ function CartItem ( {
 
     const { cartId, cartItems } = useSelector((state: RootState) => state.cart);
 
-    const [number, setNumber] = useState<number>(quantity);
+    const [ number, setNumber ] = useState<number>(quantity);
+
+    // отслеживаем готовность экшенов убавления-прибавления товаров
+    const [ isCartActionLoading, setIsCartActionLoading ] = useState(false);
 
     // функция для увеличения товаров в корзине
     function increaseCount ({id, quantity} : IIncrease) {
+        setIsCartActionLoading(true)
         setNumber(quantity + 1)
         dispatch(increase(id))
         // обновляем массив продуктов с учётом нового количества товара
@@ -51,11 +55,15 @@ function CartItem ( {
             })
         })
         .then(res => res.json())
-        .then(newCart => dispatch(updateCart(newCart)));
+        .then(newCart =>{
+            dispatch(updateCart(newCart))
+            setIsCartActionLoading(false)
+        });
     }
 
     // функция для уменьшения товаров в корзине
     function decreaseCount ({id, quantity} : IDecrease) {
+        setIsCartActionLoading(true)
         setNumber(quantity - 1)
         dispatch(decrease(id))
         // обновляем массив продуктов с учётом нового количества товара
@@ -78,11 +86,15 @@ function CartItem ( {
             })
         })
         .then(res => res.json())
-        .then(newCart => dispatch(updateCart(newCart)));
+        .then(newCart => {
+            dispatch(updateCart(newCart))
+            setIsCartActionLoading(false)
+        });
     }
 
     // функция для удаления товара из корзины
     function deleteProduct ({id} : IDelete) {
+        setIsCartActionLoading(true)
         setNumber(0)
         dispatch(deleteItem(id))
         // обновляем массив продуктов с учётом нового количества товара
@@ -105,7 +117,10 @@ function CartItem ( {
             })
         })
         .then(res => res.json())
-        .then(newCart => dispatch(updateCart(newCart)));
+        .then(newCart => {
+            dispatch(updateCart(newCart))
+            setIsCartActionLoading(false)
+        });
     }
     
     return (
@@ -122,7 +137,8 @@ function CartItem ( {
                 num={number} 
                 id={id} 
                 increaseOnClick={increaseCount} 
-                decreaseOnClick={decreaseCount}>
+                decreaseOnClick={decreaseCount}
+                isLoading={isCartActionLoading}>
                 </AddOrCount>
             </div>
             {number < 1 ? <></> : <div className={style.deleteWrap}><ButtonDelete id={id} deleteOnClick={deleteProduct}></ButtonDelete></div>}
