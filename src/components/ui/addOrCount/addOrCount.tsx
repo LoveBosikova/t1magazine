@@ -47,7 +47,7 @@ function AddOrCount (props: IAddOrCountProps) {
             increaseOnClick={()=> increaseOnClick({id: id, quantity: num})} 
             decreaseOnClick={()=> decreaseOnClick({id: id, quantity: num})}>
             </CountPanel> : 
-            <ButtonCart increaseOnClick={()=> increaseOnClick({id: id, quantity: num})} isLoading={isLoading} setNumber={setNumber}>
+            <ButtonCart id={id} quantity={num} increaseOnClick={()=> increaseOnClick({id: id, quantity: num})} isLoading={isLoading} setNumber={setNumber}>
             </ButtonCart>}
         </>
     )

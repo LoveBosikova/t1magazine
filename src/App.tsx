@@ -97,7 +97,7 @@ function App() {
             {loggedIn ? <CartPage products={products} setProducts={setProducts} /> : <Redirect to="/login" /> }
           </Route>
           <Route path="/product">
-            {loggedIn ? <ProductPage  /> : <Redirect to="/login" /> }
+            {loggedIn ? <ProductPage  products={products} setProducts={setProducts}/> : <Redirect to="/login" /> }
           </Route>
           <Route path="/login">
             {loggedIn ? <Redirect to="/" /> : <Auth setLoggedIn={setLoggedIn} />}

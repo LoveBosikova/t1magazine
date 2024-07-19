@@ -50,7 +50,7 @@ function CartItem ( {
         dispatch(increase(id))
 
         const curProduct = products.find((propduct: IFeature) => propduct.id === id);
-        if (curProduct.stock == (+quantity + 1)) {
+        if (curProduct&&curProduct.stock&&curProduct.stock == (+quantity + 1)) {
             setIsMaxAmount(true)
         }
         // обновляем массив продуктов с учётом нового количества товара
@@ -89,7 +89,7 @@ function CartItem ( {
         // если с уменьшением товара можно будет прибавить товар, убираем значение isMaxAmount - 
         // так разблолкируется кнопка добавления этого товара
         const curProduct = products.find((propduct: IFeature) => propduct.id === id);
-        if (curProduct.stock > (+quantity - 1)) {
+        if (curProduct&&curProduct.stock&&curProduct.stock > (+quantity - 1)) {
             setIsMaxAmount(false)
         }
         // обновляем массив продуктов с учётом нового количества товара

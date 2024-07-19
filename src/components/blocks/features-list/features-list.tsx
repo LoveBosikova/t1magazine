@@ -23,10 +23,8 @@ function FeaturesList ({products, setProducts} : IFeatureListProps) {
 
   // q        - запрос из поисковой строки 
   // skip     - сколько продуктов уже загружено и нужно пропустить при следующем запросе продуктов
-  // products - список всех подгруженных продуктов 
   const [ q, setQ ] = useState('');
   const [ skip, setSkip ] = useState(0);
-  // const [ products, setProducts ] = useState<IFeature[]>([]);
 
   const { data, error, isLoading } = useGetProductsByTitle({q, skip});
 

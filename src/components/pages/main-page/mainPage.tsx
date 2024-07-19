@@ -11,7 +11,7 @@ import type { SetStateAction } from 'react';
 import style from './MainPage.module.scss';
 
 
-function MainPage ({products, setProducts} : {
+function MainPage ({ products, setProducts } : {
     products: IFeature[], 
     setProducts: Dispatch<SetStateAction<IFeature[]>>}) {
 

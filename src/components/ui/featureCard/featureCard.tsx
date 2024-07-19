@@ -71,7 +71,7 @@ function FeatureCard ( props : IFeatureCardProps ) {
         // Сначала смотрим,  а можем ли мы увеличить продукт - есть ли он еще в стоке
         let newProducts;
         const curProduct = props.products.find((propduct: IFeature) => propduct.id === id);
-        if (curProduct.stock == (+quantity + 1)) {
+        if (curProduct&&curProduct.stock&&curProduct.stock == (+quantity + 1)) {
             setIsMaxAmount(true)
         }
 
@@ -117,7 +117,7 @@ function FeatureCard ( props : IFeatureCardProps ) {
         // если с уменьшением товара можно будет прибавить товар, убираем значение isMaxAmount - 
         // так разблолкируется кнопка добавления этого товара
         const curProduct = props.products.find((propduct: IFeature) => propduct.id === id);
-        if (curProduct.stock > (+quantity - 1)) {
+        if (curProduct&&curProduct.stock&&curProduct.stock > (+quantity - 1)) {
             setIsMaxAmount(false)
         }
 
