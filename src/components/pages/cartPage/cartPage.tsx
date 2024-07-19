@@ -7,9 +7,12 @@ import type { IFeature } from '../../ui/featureCard/featureCard';
 import CartItem from '../../ui/cartItem/cartItem';
 import style from './CartPage.module.scss';
 import Loading from '../../ui/loading/loading';
-import { RootState } from '../../../redux/store';
 
-function CartPage () {
+import type { RootState } from '../../../redux/store';
+import type { Dispatch } from '@reduxjs/toolkit';
+import type { SetStateAction } from 'react';
+
+function CartPage ({products} : { products: IFeature[] }) {
 
     const { cartItems, isLoading, amount, total, discountedTotal } = useSelector((state: RootState) => state.cart);
 
@@ -29,7 +32,7 @@ function CartPage () {
                         {/* Если загружена корзина, проверяем, есть ли в ней что-либо. Если нет ничего - No items, иначе - список покупок */}
                         {isLoading ? <Loading></Loading> 
                         : !cartItems || cartItems.length === 0 ? <span>No items</span> 
-                        : cartItems.map((cartItem : IFeature) => <CartItem key={cartItem.id} {...cartItem}></CartItem>)}
+                        : cartItems.map((cartItem : IFeature) => <CartItem key={cartItem.id} {...cartItem} products={products} ></CartItem>)}
                     </ul>
                     <div className={style.totalsWrap}>
                         <div className={style.totalWrap}>

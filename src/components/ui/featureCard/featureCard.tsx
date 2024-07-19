@@ -21,6 +21,7 @@ export interface IFeature {
     discountedTotal: number,
     owner: string | undefined,
     thumbnail: string | undefined,
+    stock?: number
 }
 
 export interface IFeatureCardProps {
@@ -41,12 +42,16 @@ function FeatureCard ( props : IFeatureCardProps ) {
     const dispatch = useDispatch();
 
     // количество товара в корзине
-    const [number, setNumber] = useState<number>(0);
+    const [ number, setNumber ] = useState<number>(0);
 
+    // забираем данные из глобального стейта
     const { cartId, cartItems } = useSelector((state: any) => state.cart);
 
     // отслеживаем готовность экшенов убавления-прибавления товаров
     const [ isCartActionLoading, setIsCartActionLoading ] = useState(false);
+
+    // отслеживаем возможность прибавить товар
+    const [ isMaxAmount, setIsMaxAmount ] = useState(false);
 
     // проверяем, есть ли такой айди товара в корзине. Если есть, устанавливаем значение количества товара на значение из корзины
     useEffect(() => {
@@ -59,14 +64,18 @@ function FeatureCard ( props : IFeatureCardProps ) {
     // функция для увеличения товаров в корзине
     function increaseCount ({id, quantity} : IIncrease) {
         setIsCartActionLoading(true)
-        setNumber(quantity + 1)
+        setNumber(+quantity + 1)
         dispatch(increase(id))
+
         // обновляем массив продуктов с учётом нового количества товара
-        // Два сценария - если продукт уже есть в корзине и если его нет
-        console.log(cartItems.find((cartItem : IFeature)=> cartItem.id === id));
-
+        // Сначала смотрим,  а можем ли мы увеличить продукт - есть ли он еще в стоке
         let newProducts;
+        const curProduct = props.products.find((propduct: IFeature) => propduct.id === id);
+        if (curProduct.stock == (+quantity + 1)) {
+            setIsMaxAmount(true)
+        }
 
+        // Потом есть два сценария - если продукт уже есть в корзине и если его нет
         if (cartItems.find((cartItem : IFeature)=> cartItem.id === id)) {
             // если товар с таким айди уже есть в корзине, перебираем корзину и увеличивваем количество нужного продукта 
             newProducts = cartItems.map((cartItem: IFeature) => { 
@@ -104,6 +113,14 @@ function FeatureCard ( props : IFeatureCardProps ) {
         setIsCartActionLoading(true)
         setNumber(quantity - 1)
         dispatch(decrease(id))
+
+        // если с уменьшением товара можно будет прибавить товар, убираем значение isMaxAmount - 
+        // так разблолкируется кнопка добавления этого товара
+        const curProduct = props.products.find((propduct: IFeature) => propduct.id === id);
+        if (curProduct.stock > (+quantity - 1)) {
+            setIsMaxAmount(false)
+        }
+
         // обновляем массив продуктов с учётом нового количества товара
         const newProducts = cartItems.map((cartItem: IFeature) => { 
             if (cartItem.id == id){
@@ -151,7 +168,8 @@ function FeatureCard ( props : IFeatureCardProps ) {
                         id={props.id} 
                         increaseOnClick={increaseCount} 
                         decreaseOnClick={decreaseCount}
-                        isLoading={isCartActionLoading}>
+                        isLoading={isCartActionLoading}
+                        isMaxAmount={isMaxAmount}>
                         </AddOrCount>
                     </div>
                 </div>

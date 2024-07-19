@@ -26,18 +26,29 @@ export interface IAddOrCountProps {
     id: number
     num: number,
     isLoading: boolean,
+    isMaxAmount: boolean,
     increaseOnClick: ({ id, quantity }: IIncrease) => void,
     decreaseOnClick: ({ id, quantity }: IDecrease) => void,
 }
 
+// компонент отвечает за отображение элемента - решает, показывать счетчик или иконку корзины
 function AddOrCount (props: IAddOrCountProps) {
 
-    const { id, num, isLoading, increaseOnClick, decreaseOnClick } = props;
+    const { id, num, isLoading, isMaxAmount, increaseOnClick, decreaseOnClick } = props;
     const [number, setNumber] = useState(0)
 
     return (
         <>
-            {num > 0 ? <CountPanel id={id} num={num} isLoading={isLoading} increaseOnClick={()=> increaseOnClick({id: id, quantity: num})} decreaseOnClick={()=> decreaseOnClick({id: id, quantity: num})}></CountPanel> : <ButtonCart increaseOnClick={()=> increaseOnClick({id: id, quantity: num})} isLoading={isLoading} setNumber={setNumber}></ButtonCart>}
+            {num > 0 ? <CountPanel
+            id={id} 
+            num={num} 
+            isLoading={isLoading} 
+            isMaxAmount={isMaxAmount} 
+            increaseOnClick={()=> increaseOnClick({id: id, quantity: num})} 
+            decreaseOnClick={()=> decreaseOnClick({id: id, quantity: num})}>
+            </CountPanel> : 
+            <ButtonCart increaseOnClick={()=> increaseOnClick({id: id, quantity: num})} isLoading={isLoading} setNumber={setNumber}>
+            </ButtonCart>}
         </>
     )
 }

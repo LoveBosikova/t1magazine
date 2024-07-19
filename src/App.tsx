@@ -14,7 +14,9 @@ import {
   Switch, 
   Route,
   Redirect } 
-  from 'react-router-dom';
+from 'react-router-dom';
+
+import type { IFeature } from './components/ui/featureCard/featureCard';
 
 import styles from './App.module.scss';
 
@@ -50,6 +52,8 @@ function App() {
   // Состояния текущего юзера в стейте и в контексте
   const [currentUser, setCurrentUser] = useState<null | IUser>(null);
   let {user} = useContext(userContext);
+
+  const [ products, setProducts ] = useState<IFeature[]>([]);
 
   // Если есть токен, то при загрузке запускаем аутентификацию 
   useEffect(()=> {
@@ -87,10 +91,10 @@ function App() {
         {/* Со всех страниц отправляем незалогиненного пользователя на логин, 
         но если залогиненный хочет на эту страницу, отправляем на главную */}
           <Route exact path="/">
-            {loggedIn ? <MainPage /> : <Redirect to="/login" /> }
+            {loggedIn ? <MainPage products={products} setProducts={setProducts} /> : <Redirect to="/login" /> }
           </Route>
           <Route path="/cart">
-            {loggedIn ? <CartPage /> : <Redirect to="/login" /> }
+            {loggedIn ? <CartPage products={products} setProducts={setProducts} /> : <Redirect to="/login" /> }
           </Route>
           <Route path="/product">
             {loggedIn ? <ProductPage  /> : <Redirect to="/login" /> }

@@ -13,13 +13,23 @@ import { RootState } from '../../../redux/store';
 
 import style from './CartItem.module.scss';
 
+interface ICartItenProps {
+    id: number,
+    title: string,
+    price: number,
+    quantity: number,
+    thumbnail: string | undefined,
+    products: IFeature[]
+}
+
 function CartItem ( {
     id,
     title, 
     price, 
     quantity, 
-    thumbnail
-} : IFeature) {
+    thumbnail,
+    products
+} : ICartItenProps) {
 
     const dispatch = useDispatch();
 
@@ -30,15 +40,24 @@ function CartItem ( {
     // отслеживаем готовность экшенов убавления-прибавления товаров
     const [ isCartActionLoading, setIsCartActionLoading ] = useState(false);
 
+    // отслеживаем возможность прибавить товар
+    const [ isMaxAmount, setIsMaxAmount ] = useState(false);
+
     // функция для увеличения товаров в корзине
     function increaseCount ({id, quantity} : IIncrease) {
         setIsCartActionLoading(true)
         setNumber(quantity + 1)
         dispatch(increase(id))
+
+        const curProduct = products.find((propduct: IFeature) => propduct.id === id);
+        if (curProduct.stock == (+quantity + 1)) {
+            setIsMaxAmount(true)
+        }
         // обновляем массив продуктов с учётом нового количества товара
         const newProducts = cartItems.map((cartItem: IFeature) => { 
             if (cartItem.id == id){
                 const newCartItem ={...cartItem}
+                console.log(newCartItem);
                 newCartItem.quantity = cartItem.quantity + 1;
                 return newCartItem;
             } else if (cartItem.id !== id) {
@@ -66,6 +85,13 @@ function CartItem ( {
         setIsCartActionLoading(true)
         setNumber(quantity - 1)
         dispatch(decrease(id))
+
+        // если с уменьшением товара можно будет прибавить товар, убираем значение isMaxAmount - 
+        // так разблолкируется кнопка добавления этого товара
+        const curProduct = products.find((propduct: IFeature) => propduct.id === id);
+        if (curProduct.stock > (+quantity - 1)) {
+            setIsMaxAmount(false)
+        }
         // обновляем массив продуктов с учётом нового количества товара
         const newProducts = cartItems.map((cartItem: IFeature) => { 
             if (cartItem.id == id){
@@ -138,7 +164,8 @@ function CartItem ( {
                 id={id} 
                 increaseOnClick={increaseCount} 
                 decreaseOnClick={decreaseCount}
-                isLoading={isCartActionLoading}>
+                isLoading={isCartActionLoading}
+                isMaxAmount={isMaxAmount}>
                 </AddOrCount>
             </div>
             {number < 1 ? <></> : <div className={style.deleteWrap}><ButtonDelete id={id} deleteOnClick={deleteProduct}></ButtonDelete></div>}

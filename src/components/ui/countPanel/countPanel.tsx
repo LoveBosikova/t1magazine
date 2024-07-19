@@ -7,7 +7,7 @@ import style from './CountPanel.module.scss';
 
 function CountPanel (props: IAddOrCountProps) {
 
-    const {id, num, isLoading, increaseOnClick, decreaseOnClick} = props;
+    const {id, num, isLoading,isMaxAmount, increaseOnClick, decreaseOnClick} = props;
 
     return (
         <div className={style.countWrap}>
@@ -17,7 +17,8 @@ function CountPanel (props: IAddOrCountProps) {
             <div className={style.countTextWrap}>
                 <span className={style.countText}>{num} {num > 1? 'items' : 'item'}</span>
             </div>
-            <button disabled={isLoading} className={style.countBtn} onClick={()=> increaseOnClick({id: id, quantity: num})}>
+            {/* кнопка добавления товара недоступна, если идет обработка прошлого добавления или если достигнуто максимальное количество товара */}
+            <button disabled={isLoading||isMaxAmount} className={style.countBtn} onClick={()=> increaseOnClick({id: id, quantity: num})}>
                 <img className={style.icon} src={plusIcon} alt='' />
             </button>
         </div>

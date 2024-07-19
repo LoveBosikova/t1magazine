@@ -7,18 +7,26 @@ import Loading from '../../ui/loading/loading';
 
 import { useGetProductsByTitle } from '../../../redux/slices/productsSlice';
 
+import type { Dispatch } from '@reduxjs/toolkit';
+import type { SetStateAction } from 'react';
+
 import style from './FeaturesList.module.scss'
 
 // список товаров
 
-function FeaturesList () {
+interface IFeatureListProps {
+  products: IFeature[], 
+  setProducts: Dispatch<SetStateAction<IFeature[]>>
+}
+
+function FeaturesList ({products, setProducts} : IFeatureListProps) {
 
   // q        - запрос из поисковой строки 
   // skip     - сколько продуктов уже загружено и нужно пропустить при следующем запросе продуктов
   // products - список всех подгруженных продуктов 
   const [ q, setQ ] = useState('');
   const [ skip, setSkip ] = useState(0);
-  const [ products, setProducts ] = useState<IFeature[]>([]);
+  // const [ products, setProducts ] = useState<IFeature[]>([]);
 
   const { data, error, isLoading } = useGetProductsByTitle({q, skip});
 
