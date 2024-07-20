@@ -17,7 +17,7 @@ export interface ICartState {
     discountedTotal: number
 }
 
-const initialState: ICartState = {
+export const initialState: ICartState = {
     cartId: 0,
     cartItems: [],
     isLoading: true,

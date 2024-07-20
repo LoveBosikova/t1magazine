@@ -4,6 +4,8 @@
 
 # npm run storybook
 
+# npm run test 
+
 logo - molecule
 footer - atom
 

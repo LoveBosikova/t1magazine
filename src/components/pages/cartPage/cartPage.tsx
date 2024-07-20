@@ -9,14 +9,10 @@ import style from './CartPage.module.scss';
 import Loading from '../../ui/loading/loading';
 
 import type { RootState } from '../../../redux/store';
-import type { Dispatch } from '@reduxjs/toolkit';
-import type { SetStateAction } from 'react';
 
 function CartPage ({products} : { products: IFeature[] }) {
 
     const { cartItems, isLoading, amount, total, discountedTotal } = useSelector((state: RootState) => state.cart);
-
-    // console.log(cartItems);
 
     return (
     <>
