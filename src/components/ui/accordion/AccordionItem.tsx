@@ -15,10 +15,10 @@ function AccordionItem (props: IQuestion) {
     
     return (
         <li className={styles.itemWrap}>
-            <button className={styles.queationWrap} onClick={()=> setIsOpen(!isOpen)}>
+            <button title='Close this answer' className={styles.queationWrap} onClick={()=> setIsOpen(!isOpen)}>
                 <p className={styles.questionText}>{props.question}</p>
                 <picture className={isOpen ? styles.closeCross: styles.closePlus}>
-                    <img className={styles.btnIcon} src={closeIcon} alt='' />
+                    <img className={styles.btnIcon} src={closeIcon} alt='Close this answer' />
                 </picture>
             </button>
             <p className={ isOpen ? styles.answerOpen: styles.answer }>{props.answer}</p>

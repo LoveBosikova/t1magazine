@@ -22,7 +22,7 @@ function ButtonCart ({setNumber, increaseOnClick, id, quantity, isLoading}: {
             increaseOnClick({id, quantity})
         }}>
             <picture className={style.iconWrap}>
-                <img className={style.icon} src={cartImg} alt='CartIcon'/>
+                <img className={style.icon} src={cartImg} alt='Add to cart' aria-label='Add to cart'/>
             </picture>
         </button>
     )

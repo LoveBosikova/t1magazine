@@ -4,6 +4,7 @@
 .page {
     margin-left: auto;
     margin-right: auto;
+    background-color: $white;
 }
 
 .pageWrap {
@@ -14,6 +15,7 @@
     flex-wrap: nowrap;
     justify-content: space-between;
     align-content: start;
+    background-color: $white;
 }
 
 .hidden {
